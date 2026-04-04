@@ -1,0 +1,38 @@
+--- a/cicecore/cicedyn/dynamics/ice_dyn_evp1d.F90
++++ b/cicecore/cicedyn/dynamics/ice_dyn_evp1d.F90
+@@ -711,18 +711,21 @@
+      call gather_global_ext(G_stress12_4,     L_stress12_4,    master_task, distrb_info,c0)
+      call gather_global_ext(G_strength  ,     L_strength  ,    master_task, distrb_info,c0)
+
+-     call gather_global_ext(G_cdn_ocn   ,     L_cdn_ocn   ,     master_task, distrb_info)
+-     call gather_global_ext(G_aiu       ,     L_aiu       ,     master_task, distrb_info)
+-     call gather_global_ext(G_uocn      ,     L_uocn      ,     master_task, distrb_info)
+-     call gather_global_ext(G_vocn      ,     L_vocn      ,     master_task, distrb_info)
++     ! Fix: pass c0 as spc_val so unfilled cells get 0.0 instead of spval_dbl (1e30).
++     ! Without this, cells not covered by any distributed block retain 1e30,
++     ! which can propagate through the neighbor stencil in stepu_1d.
++     ! This matches the pattern already used for stress, strength, uvel, vvel above.
++     call gather_global_ext(G_cdn_ocn   ,     L_cdn_ocn   ,     master_task, distrb_info,c0)
++     call gather_global_ext(G_aiu       ,     L_aiu       ,     master_task, distrb_info,c0)
++     call gather_global_ext(G_uocn      ,     L_uocn      ,     master_task, distrb_info,c0)
++     call gather_global_ext(G_vocn      ,     L_vocn      ,     master_task, distrb_info,c0)
+
+-     call gather_global_ext(G_waterxU   ,     L_waterxU   ,     master_task, distrb_info)
+-     call gather_global_ext(G_wateryU   ,     L_wateryU   ,     master_task, distrb_info)
+-     call gather_global_ext(G_forcexU   ,     L_forcexU   ,     master_task, distrb_info)
+-     call gather_global_ext(G_forceyU   ,     L_forceyU   ,     master_task, distrb_info)
++     call gather_global_ext(G_waterxU   ,     L_waterxU   ,     master_task, distrb_info,c0)
++     call gather_global_ext(G_wateryU   ,     L_wateryU   ,     master_task, distrb_info,c0)
++     call gather_global_ext(G_forcexU   ,     L_forcexU   ,     master_task, distrb_info,c0)
++     call gather_global_ext(G_forceyU   ,     L_forceyU   ,     master_task, distrb_info,c0)
+
+-     call gather_global_ext(G_umassdti  ,     L_umassdti  ,     master_task, distrb_info)
+-     call gather_global_ext(G_fmU       ,     L_fmU       ,     master_task, distrb_info)
++     call gather_global_ext(G_umassdti  ,     L_umassdti  ,     master_task, distrb_info,c0)
++     call gather_global_ext(G_fmU       ,     L_fmU       ,     master_task, distrb_info,c0)
+
+-     call gather_global_ext(G_Tbu       ,     L_Tbu       ,     master_task, distrb_info)
++     call gather_global_ext(G_Tbu       ,     L_Tbu       ,     master_task, distrb_info,c0)
+      call gather_global_ext(G_uvel      ,     L_uvel      ,     master_task, distrb_info,c0)
+      call gather_global_ext(G_vvel      ,     L_vvel      ,     master_task, distrb_info,c0)
+      call gather_global_ext(G_iceTmask  ,     L_iceTmask  ,     master_task, distrb_info)
