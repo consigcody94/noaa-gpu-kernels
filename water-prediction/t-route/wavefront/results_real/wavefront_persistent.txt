@@ -1,0 +1,5 @@
+[io] n_reaches=309556 n_segments=309556 n_levels=1143
+[gpu] coop: numSM=28 bpSM=4 -> blocks=112 threads=256
+[gpu] running 24 timesteps (persistent wavefront)
+[gpu-persistent-secant] total ms: 232.097 per-ts: 9.671 ms
+[gpu-persistent-secant] sum=1.472e+03 max=6.607e+00 nans=0

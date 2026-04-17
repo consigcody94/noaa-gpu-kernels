@@ -1,0 +1,7 @@
+[io] loading net_real_309k
+[io] n_reaches=309556 n_segments=309556 n_levels=1143 max_up=33
+[io] n_timesteps=24
+[gpu] cooperative: numSM=28 maxBlocksPerSM=5 -> coop_blocks=140
+[gpu] running 24 timesteps
+[gpu-persistent] total ms: 104.929  per-timestep: 4.372 ms
+[gpu-persistent] Q_final sum=4.862e+03 max=8.038e+00 nans=0
