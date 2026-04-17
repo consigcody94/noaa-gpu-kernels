@@ -1,0 +1,18 @@
+[package]
+name = "troute_preprocess"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rayon = "1.10"
+memmap2 = "0.9"
+byteorder = "1.5"
+
+[[bin]]
+name = "troute_preprocess"
+path = "src/main.rs"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
