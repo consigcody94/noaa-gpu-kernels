@@ -1,0 +1,15 @@
+[io] loading topology from net_500k_4
+[io]  n_reaches=436338 n_segments=5234345 n_levels=67 max_upstream=3
+[io]  n_timesteps=4
+[gpu] allocating...
+[gpu] running 4 timesteps x 67 levels
+[gpu] total ms: 203.286  per-timestep: 50.821 ms
+[cpu-fp32] running CPU reference (single-thread, same schedule, FP32)
+[cpu-fp32] total ms: 8622.387  per-timestep: 2155.597 ms
+[cpu-fp64] running CPU FP64 ground-truth reference
+[cpu-fp64] total ms: 14420.835
+[acc:GPU-FP32 vs FP64] max_abs=3.856e+01  p50=2.60e-07 p90=1.55e-05 p99=2.30e-03 p99.9=1.56e-01 max=9.64e+03  within-1%=99.53% within-10%=99.87% nans=0
+[acc:CPU-FP32 vs FP64] max_abs=3.855e+01  p50=2.68e-07 p90=1.62e-05 p99=2.34e-03 p99.9=1.57e-01 max=9.65e+03  within-1%=99.52% within-10%=99.87% nans=0
+[sum] Timings: GPU-FP32 203.29 ms | CPU-FP32 8622.39 ms | CPU-FP64 14420.84 ms
+[sum] Speedup GPU-FP32 vs CPU-FP32: 42.42x
+[sum] Speedup GPU-FP32 vs CPU-FP64: 70.94x
