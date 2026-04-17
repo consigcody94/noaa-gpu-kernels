@@ -126,18 +126,16 @@ __device__ __forceinline__ void process_reach(
 __device__ __forceinline__ void atomic_barrier(
     int L, int num_blocks, int* __restrict__ grid_barrier)
 {
-    __syncthreads();  // ensure all block threads have finished stores
+    __syncthreads();                  // ensure all block threads finished stores
     if (threadIdx.x == 0) {
-        __threadfence();            // make local writes visible globally
+        __threadfence();              // make local writes visible globally
         int ticket = atomicAdd(&grid_barrier[L], 1);
         (void)ticket;
-        // Spin until all blocks reach this barrier
-        while (*((volatile int*)&grid_barrier[L]) < num_blocks) {
-            // brief pause to reduce L2 contention
-            __nanosleep(200);
-        }
+        // Pure spin — no __nanosleep (it adds latency; L2 contention is fine
+        // at 56 blocks on Ampere).
+        while (*((volatile int*)&grid_barrier[L]) < num_blocks) { }
     }
-    __syncthreads();  // other threads wait for thread 0 to return
+    __syncthreads();                  // other threads wait for thread 0
 }
 
 __global__ void kernel_split_atomic(
