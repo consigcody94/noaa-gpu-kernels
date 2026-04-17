@@ -1,0 +1,14 @@
+[io] loading from net_10k
+[io] n_reaches=8642 n_segments=104286 reach-levels=39
+[io] n_timesteps=24
+[gpu] running 24 timesteps x 39 reach-levels
+[gpu] total ms: 15.591  per-timestep: 0.650 ms
+[cpu-fp32] running CPU FP32 linear MC...
+[cpu-fp32] total ms: 8.672  per-timestep: 0.361 ms
+[cpu-fp64] running CPU FP64 ground truth...
+[cpu-fp64] total ms: 11.391
+[acc:GPU-FP32 vs FP64] max_abs=7.143e-02 p50=1.10e-07 p90=3.41e-07 p99=6.57e-07 p99.9=1.03e-06 max=3.76e-06 within-1%=100.00% within-10%=100.00%
+[acc:CPU-FP32 vs FP64] max_abs=3.212e-02 p50=1.17e-07 p90=3.64e-07 p99=6.89e-07 p99.9=1.05e-06 max=3.70e-06 within-1%=100.00% within-10%=100.00%
+[sum] Timings: GPU 15.59 ms | CPU-FP32 8.67 ms | CPU-FP64 11.39 ms
+[sum] Speedup GPU vs CPU-FP32: 0.56x
+[sum] Speedup GPU vs CPU-FP64: 0.73x

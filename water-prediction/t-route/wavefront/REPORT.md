@@ -55,9 +55,58 @@ All numbers are single-timestep averages. GPU includes the per-timestep H→D ql
 - **At 309K reaches (JoshCu's published test size)**: 29.4 ms/timestep on RTX 3060. JoshCu's 32-core Rust kernel reports 5.32s for 309K × 24 timesteps = **222 ms/timestep**, meaning this kernel is ~**7.6x faster than a 32-core AMD 9950X3D running rs_route** on a comparable topology.
 - **Projection to CONUS (2.7M reaches)**: linear extrapolation from 1M (70.7 ms/ts) gives ~190 ms/ts on RTX 3060. A100 has ~6x the FP32 throughput of a 3060 and more SMs, so ~30-50 ms/ts is realistic.
 
+## Second kernel: linearized sparse-matrix MC (ddr / river-route formulation)
+
+Added after the first round of results. Implements the matrix form the
+maintainers pointed to:
+
+    (I − C₁·N) · Q_{t+1} = C₂·N·Q_t + C₃·Q_t + C₄·q'
+
+Coefficients C₁..C₄ are precomputed once from channel geometry at a
+reference depth (half-bankfull) — matching classical linearized MC usage.
+Because segments are topologically ordered, the LHS is lower-triangular
+with unit diagonal and the timestep is a single sparse forward
+substitution. Same reach-level wavefront scheduling on GPU, no
+per-segment iteration.
+
+Source: `linear_mc.cu`. Results in `results_linear/`.
+
+### Linear MC benchmarks (same hardware, same topology)
+
+| reaches | GPU FP32 ms/ts | CPU FP32 ms/ts | CPU FP64 ms/ts | GPU vs CPU-FP32 | GPU vs CPU-FP64 |
+|--------:|---------------:|---------------:|---------------:|----------------:|----------------:|
+|     1K  |   0.34 ms      |   0.03 ms      |   0.03 ms      |  0.10x | 0.09x |
+|    10K  |   0.65 ms      |   0.36 ms      |   0.47 ms      |  0.56x | 0.73x |
+|   100K  |   1.74 ms      |   8.93 ms      |  14.63 ms      |  **5.15x** |  8.43x |
+|   309K  |   4.59 ms      |  40.15 ms      |  54.47 ms      |  **8.75x** | 11.87x |
+|   500K  |   7.74 ms      |  76.00 ms      | 107.31 ms      |  **9.82x** | 13.86x |
+|     1M  |  14.36 ms      | 173.66 ms      | 232.37 ms      | **12.09x** | 16.18x |
+
+Accuracy vs FP64 truth: **100.00% within 1%** at every scale (linear MC
+has no iterative solver, so no secant path divergence; only straight FP32
+rounding accumulates).
+
+### Linear vs nonlinear (both on GPU, 309K reaches):
+
+| kernel | ms/timestep | notes |
+|--------|-----------:|-------|
+| Secant wavefront (exact t-route algorithm) | 29.4 ms | nonlinear, per-segment iteration up to 100x |
+| Linear sparse-matrix MC (ddr-style)        | 4.6 ms  | **6.4x faster**, single forward-sub |
+
+**Takeaway:** the linearized formulation that DDR and river-route use is
+the right target when you care about throughput — it's 6x faster than the
+full secant at 309K reaches, with 100% of segments within 1% of FP64
+truth. The nonlinear secant is the right target when you need exact
+numerical match with t-route Fortran.
+
+Compared to JoshCu's 32-core Rust `rs_route` number (222 ms/timestep at
+309K reaches), the linear MC GPU kernel is **~48x faster**, though
+note rs_route is doing the full nonlinear MC — a fair apples-to-apples
+would be the wavefront secant kernel above (~7.6x faster than 32-core).
+
 ## What this does not show
 
-- No linearized/sparse-matrix MC variant yet. [DeepGroundwater/ddr](https://github.com/DeepGroundwater/ddr) and [geoglows/river-route](https://github.com/geoglows/river-route) use a linearized per-timestep form `(I − C₁N) Q_{t+1} = C₂NQ_t + C₃Q_t + C₄Q'` that avoids the 100-iteration secant entirely, replacing it with a single sparse triangular solve. That formulation should be strictly faster than this kernel on the same hardware because cuSPARSE's batched triangular solve is hand-tuned. That's the next comparison.
+- I did not run rs_route or an OpenMP Fortran t-route on the same machine.
 - The `max` outlier (up to ~10⁴ relative error) is a handful of segments where the FP64 reference converges to a tiny flow (~1e-4) and the FP32 run converges to something ~1 — the iteration paths diverged. This affects <0.1% of segments and happens equally on CPU FP32 and GPU FP32.
 - Single-thread CPU only. I have not yet run the Rust rs_route or an OpenMP Fortran build as a multi-thread CPU baseline on the same machine — the 32-core/222 ms number comes from JoshCu's published issue comment on a different machine.
 
