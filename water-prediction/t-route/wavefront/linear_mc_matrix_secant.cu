@@ -364,16 +364,53 @@ int main(int argc, char** argv) {
     mean_qlat /= t.n_segments;
     float ql_ref = std::fmax(0.1f, (float)mean_qlat);
 
-    // Per reach, call secant solver with reference flows
+    // Per reach, call secant solver with REALISTIC reference flows.
+    // We use the steady-state approximation: upstream ancestors contribute
+    // roughly sum of headwater qlats. In a tree, the reference downstream
+    // flow is ~ (qlat * area-of-drainage). Approximate with simple sum of
+    // reach's own qlat plus qlat-mean * num_ancestors.
+    // This gives coefficients valid at typical-flow, not cold-start.
+    std::vector<float> ref_Q(t.n_reaches, 0.0f);
+    // Approximate ref_Q via one pass through topological levels (cheap,
+    // since we're on CPU and only need this once).
+    // ref_Q[r] = qlat[r] + sum(ref_Q[u] for u in up(r))
+    // Plus scale by mean_qlat to get more realistic magnitude.
+    for (int L = 0; L < t.n_levels; ++L) {
+        int lb = t.level_ptr[L], le = t.level_ptr[L + 1];
+        for (int ii = lb; ii < le; ++ii) {
+            int r = t.level_reach[ii];
+            float sum_up = 0.f;
+            for (int k = t.reach_up_ptr[r]; k < t.reach_up_ptr[r+1]; ++k) {
+                sum_up += ref_Q[t.reach_up_idx[k]];
+            }
+            float own_ql = qlat_ts[r];   // timestep 0 qlat per reach
+            ref_Q[r] = sum_up + own_ql + (float)mean_qlat;
+        }
+    }
+    double ref_sum = 0.0, ref_max = 0.0;
+    for (int r = 0; r < t.n_reaches; ++r) {
+        ref_sum += ref_Q[r];
+        if (ref_Q[r] > ref_max) ref_max = ref_Q[r];
+    }
+    printf("[secant] reference flow: mean=%.3e max=%.3e (accumulated qlat)\n",
+           ref_sum / t.n_reaches, ref_max);
+
     #pragma omp parallel for
     for (int r = 0; r < t.n_reaches; ++r) {
         const ChParams& p = params[r];
-        // Reference state: previous downstream flow = 0 (cold start), ql = ref
-        float qdp_ref = std::fmax(qdp0[r], 0.1f);
+        // Reference: upstream-accumulated flow, own qlat as lateral
+        float qdp_ref = std::fmax(ref_Q[r], 0.1f);
+        // Estimate upstream flow = sum of upstream ref_Q values
         float qup_ref = 0.0f;
-        float quc_ref = 0.0f;
-        float depthp_ref = 0.5f;  // reasonable cold-start depth
-        mc_secant_solve_cpu(dt, qup_ref, quc_ref, qdp_ref, ql_ref,
+        for (int k = t.reach_up_ptr[r]; k < t.reach_up_ptr[r+1]; ++k) {
+            qup_ref += ref_Q[t.reach_up_idx[k]];
+        }
+        qup_ref = std::fmax(qup_ref, 0.1f);
+        float quc_ref = qup_ref;  // steady state: qup == quc
+        float ql_ref_r = std::fmax(qlat_ts[r], 0.01f);
+        // Estimate depth from flow via Manning's (rough): depth ~ (Q/W)^0.6
+        float depthp_ref = std::fmax(0.1f, std::pow(qdp_ref / (p.tw + 1.0f), 0.6f));
+        mc_secant_solve_cpu(dt, qup_ref, quc_ref, qdp_ref, ql_ref_r,
                             p.dx, p.bw, p.tw, p.twcc,
                             p.n_ch, p.ncc, p.cs, p.s0,
                             depthp_ref,
