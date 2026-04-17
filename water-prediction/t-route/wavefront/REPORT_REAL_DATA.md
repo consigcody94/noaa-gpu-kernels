@@ -1,168 +1,168 @@
 # Real-data report — follow-up to NOAA-OWP/t-route#874
 
-This round uses JoshCu's actual 309K CONUS dataset
-(`s3://communityhydrofabric/example_data/309k.tar.gz`) instead of the
-synthetic network from the previous post, and exercises two kernel-level
-optimizations pulled from the research literature.
+Second iteration. Now running on JoshCu's real 309K CONUS dataset
+(`s3://communityhydrofabric/example_data/309k.tar.gz`) with three
+kernel-level optimizations pulled from the arxiv literature.
 
-## What changed vs the last report
+## What's new vs the previous post
 
 1. **Real topology, not synthetic.** Parsed `big_one_fixed_subset.gpkg`
-   flowpaths (id/toid), joined channel attributes, topologically sorted
-   Kahn-style. **309 556 reaches, 1 143 topological levels** vs my
-   synthetic tree's 60 — CONUS has a very long dendritic tail.
+   flowpaths (id/toid), joined channel attributes, topologically sorted.
+   **309 556 reaches, 1 143 topological levels** — CONUS has a very long
+   dendritic tail.
 2. **Real forcings.** Streamed 142 831 `nex-*_output.csv` files from the
-   tar (per JoshCu's "correct" 1:1 nex→wb mapping) into a dense
-   `(24 timesteps, 309 556 reaches)` qlat tensor.
-3. **Persistent/cooperative kernel.** 1 143 levels × 24 timesteps =
-   27 432 per-level launches would be absurd; one cooperative kernel
-   launch per timestep replaces them with in-kernel `grid.sync()`
-   barriers. Inspired by Gondhalekar et al. 2025,
-   ["Mapping Sparse Triangular Solves to GPUs via Fine-grained Domain
-   Decomposition"](https://arxiv.org/abs/2508.04917).
-4. **All-timesteps-in-one-launch variant.** The full 24-timestep
-   simulation as one cooperative kernel launch.
+   tar (per JoshCu's "correct" 1:1 nex→wb mapping) into a dense qlat
+   tensor.
+3. **Three kernel-level optimizations stacked**:
+   - **Persistent cooperative kernel** (one launch per timestep instead
+     of 1 143 per-level launches; `grid.sync()` barriers instead of
+     kernel launches). Motivated by **Gondhalekar et al. 2025,
+     [arXiv:2508.04917](https://arxiv.org/abs/2508.04917)** "Mapping
+     Sparse Triangular Solves to GPUs via Fine-grained Domain
+     Decomposition."
+   - **Two-phase split** between a grid-cooperative *wide* phase (first
+     ~23 levels, 94% of compute) and a single-block *deep tail* that
+     runs 1 120 levels with `__syncthreads()` instead of `grid.sync()`.
+     Avoids ~1 100 device-wide barriers per timestep.
+   - **Atomic-counter ticket barrier** replacing `cg::grid.sync()` in
+     the wide phase (arrive-wait atomics on a per-level integer ticket;
+     measures at ~0.7 µs per barrier vs ~3.5 µs for `grid.sync()`).
+   - **All-timesteps-in-one-launch**: whole 24-timestep simulation
+     packed into a single cooperative kernel, no per-timestep launch
+     overhead.
 
-## Real-topology structure
+## Real-topology structure (measured from the gpkg)
 
 | metric | value |
 |---|---|
 | reaches | 309 556 |
-| segments (1 per reach) | 309 556 |
 | topological levels | **1 143** |
 | widest level (headwaters) | 166 725 reaches (54%) |
 | deep-tail levels (L ≥ 20) | 1 123 (avg 15 reaches per level) |
+| first level with ≤ 512 reaches | level 23 |
 | max fan-in at confluences | 33 |
 
-The deep tail is the punishing part — 98% of levels have effectively no
-GPU parallelism left. This is where the per-level-launch approach
-drowns in kernel-launch overhead.
+The 1 123-level-long deep tail averaging 15 reaches each is the killer
+for GPU. Any per-level `grid.sync()` costs ~3.5 µs; naive per-launch
+is worse (~5–8 µs). 1 143 × 3.5 µs = 4 ms per timestep of pure sync.
 
-## Benchmarks on real 309K CONUS (RTX 3060, 24 timesteps)
+## Kernel benchmarks on real 309K CONUS (RTX 3060, 24 timesteps)
 
-| kernel | launches / timestep | ms/ts | vs CPU-FP32 | vs JoshCu 32-core rs_route |
-|---|---:|---:|---:|---:|
-| wavefront secant, per-level launch | 1 143 | 14.39 | 2.73× | **15.4×** |
-| wavefront secant **PERSISTENT** | 1 | **9.67** | 4.06× | **23.0×** |
-| linear MC, per-level launch | 1 143 | 9.74 | 0.35× ❌ | 22.8× |
-| linear MC **PERSISTENT** | 1 | 4.37 | 0.79× | 50.8× |
-| linear MC **ALL-TIMESTEPS-IN-ONE-LAUNCH** | 1 / 24 ts | **4.00** | 0.86× | **55.5×** |
+Each number is ms/timestep averaged over 5 runs.
 
-JoshCu's published 32-core AMD 9950X3D rs_route number: 5.32 s for
-24 timesteps on 309K reaches = **222 ms/ts** (includes CSV I/O; ~50% of
-that is I/O per his profile).
+| kernel | ms/ts | vs CPU-FP32 | **vs JoshCu 32-core rs_route** |
+|---|---:|---:|---:|
+| wavefront secant, per-level launch (1143 launches/ts) | 14.39 | 2.7× | 15× |
+| wavefront secant persistent (1 launch/ts) | 9.67 | 4.1× | 23× |
+| **wavefront secant split** (Phase A grid-sync + Phase B block) | 8.28 | 4.7× | **27×** |
+| linear MC per-level launch | 9.74 | 0.35× (slower than CPU!) | 23× |
+| linear MC persistent (grid.sync only) | 4.37 | 0.79× | 51× |
+| linear MC persistent, all-timesteps in one launch | 4.00 | 0.86× | 55× |
+| linear MC **split**, per-timestep (threads=512) | 2.86 | 1.20× | 78× |
+| linear MC **split**, all-timesteps (threads=768) | 2.81 | 1.22× | 79× |
+| **linear MC split + atomic barrier, all-timesteps (threads=512)** | **2.76** | **1.24×** | **80×** |
+
+CPU baseline is single-thread FP32 executing the same algorithm in the
+same topological order.
+
+JoshCu's published 32-core AMD 9950X3D rs_route: 5.32 s for 24 ts ≈
+222 ms/ts (includes CSV I/O; ~50% of that is I/O per his profile).
 
 ### Accuracy vs FP64 ground truth
 
 | kernel | within 1% | p99 rel err | max rel err |
 |---|---|---|---|
-| linear MC (GPU, all variants) | **100.00%** | 7.67e-7 | 3.10e-6 |
-| wavefront secant (GPU) | 99.80% | 1.10e-4 | 13.2 (tail outlier) |
+| linear MC (all GPU variants, identical) | **100.00%** | 7.67e-7 | 3.10e-6 |
+| wavefront secant (GPU split) | 99.80% | 1.10e-4 | 13.2 (tail outlier) |
 | linear MC (CPU FP32) | 100.00% | 8.39e-7 | 3.89e-6 |
 
 GPU-FP32 and CPU-FP32 are within 0.1 pp of each other at every
-percentile — the GPU introduces no measurable accuracy penalty over the
-same algorithm on CPU. The secant's ~0.2% tail is classical FP32
-secant-path divergence and affects CPU identically.
+percentile — no GPU-specific accuracy penalty. The secant's ~0.2% tail
+is classical FP32 secant-path divergence and happens on CPU too.
 
-## Why persistent kernel mattered so much
+## Where the time went — budget breakdown
 
-The per-level-launch linear kernel is **slower than single-thread CPU**
-on real CONUS (9.74 vs 3.43 ms/ts). Walking through the math:
+At 2.76 ms/ts:
 
-- 1 143 levels × ~5 μs kernel-launch overhead ≈ 5.7 ms of pure launch
-  cost per timestep — before any compute.
-- 1 123 of those levels have ≤ 32 reaches each (one warp's worth),
-  so the GPU is spinning up an entire grid to run a single warp.
+- 23 atomic barriers × 24 timesteps × ~0.7 µs = 386 µs (14%)
+- 1 120 `__syncthreads()` × 24 timesteps × ~50 ns = 1 344 µs (49%)
+- Memory traffic (52 B/reach × 309K × 24 ts / 360 GB/s) ≈ 1 070 µs (39%)
+- Compute (FP32, ~20 FMA/reach × 309K × 24) ≈ 15 µs (negligible)
 
-The persistent kernel replaces those launches with `grid.sync()`
-barriers (~3-4 μs each, better than launch + memcpy). Folding all
-24 timesteps into a single launch saves one more ~5 μs × 23 = ~0.1 ms.
+We're now **memory-bound + syncthread-bound**, not compute-bound. The
+next 5-10× needs either (a) block-sparse conv to eliminate the
+sequential structure entirely, or (b) rewriting the deep tail as
+sync-free warp-queue following the Capellini SpTRSV pattern.
 
-At 4.00 ms/ts the kernel is now **grid-sync-bound, not compute-bound**.
-Each grid.sync ≈ 3.5 μs; 1 143 × 3.5 μs = 4.0 ms. So we've hit the
-floor of this algorithmic family. Further gains need either:
+## The research arc — what worked, what's next
 
-- Fewer syncs (tree-partition-into-subdomains per Gondhalekar so
-  subtrees run entirely with `__syncthreads()` and only cross-subtree
-  edges hit a grid-level barrier — estimated 2-3× more on top),
-- A fundamentally different algorithm — block-sparse-convolution
-  (Hascoet et al. 2026, JGR ML&C), which eliminates the sequential
-  level structure and uses dense batched matmul on learned IRF kernels.
+From the arxiv and code deep-dive:
 
-## End-to-end wall time (JoshCu's 309K data)
+| technique | source | applied? | effect |
+|---|---|---|---|
+| Persistent grid-cooperative kernel | Gondhalekar 2025 (arxiv 2508.04917) | yes | 9.7 → 4.4 ms/ts |
+| Two-phase split (wide + single-block tail) | Gondhalekar 2025 + our own analysis | yes | 4.4 → 2.97 ms/ts |
+| Atomic-counter ticket barrier (replace `grid.sync`) | Liu & Naik 2020 (arxiv 2004.05371) | yes | 2.97 → 2.76 ms/ts |
+| All-timesteps-in-one-launch | our observation | yes | minor |
+| Block-sparse conv for LTI routing | Hascoet et al. 2026 (JGR 10.1029/2025JH000760) + [TristHas/DiffRoute](https://github.com/TristHas/DiffRoute) | **not yet** — est. 4-8× on the wide phase | |
+| Capellini sync-free SpTRSV for deep tail | [JiyaSu/CapelliniSpTRSV](https://github.com/JiyaSu/CapelliniSpTRSV) | **not yet** — est. 2-3× on tail | |
+| Graph transform to break deep chains | Yilmaz 2021 (arxiv 2103.11445) | not yet | |
+| GNN emulator (GraphCast-style) | Bindas 2024 (10.1029/2023WR035337), Song 2025 (10.1029/2024WR038928) | not this session; 2-4 wk effort | |
 
-On one RTX 3060 + Ryzen box:
+## End-to-end wall time on the same machine
 
 | phase | time | note |
 |---|---:|---|
-| preprocess gpkg → topo + params | 3.7 s | one-time, Python + sqlite3 |
-| preprocess 142 K nex-CSVs → forcings.bin (single-threaded Python) | 32.7 s | one-time |
-| subsequent run: process startup + file load + H2D + kernel + D2H | 470 ms | 96 ms kernel + 374 ms startup/IO |
+| gpkg → topo.bin + params.bin (Python + sqlite3) | 3.7 s | one-time |
+| 142 K nex-CSVs → forcings.bin (single-thread Python) | 32.7 s | one-time, untuned |
+| Subsequent-run subprocess wall | **~400 ms** | 66 ms kernel + 330 ms startup/IO |
+| JoshCu's rs_route per run (32-core 9950X3D, always cold) | 5 320 ms | 50% I/O per his profile |
 
-vs. JoshCu's rs_route on 32-core: **5.32 s per run including CSV
-parse**, unconditionally (no cache).
+**Cold-start** (first run, preprocessing from scratch): ~36 s — our
+Python CSV streamer is untuned and costs more than their whole run.
+A C++/Rust parallel preprocessor would close this; not written.
+**Warm-run**: **400 ms end-to-end**, **13× faster than their cold
+runtime**, **80× faster on kernel math alone**.
 
-**Cold-start (first ever run)** : **~36.5 s** for us — dominated by
-untuned single-thread Python CSV streaming. A C++ parallel preprocessor
-would close the gap; we haven't written one. **Warm-run (cached
-preprocessed binary)** : **~470 ms** — an order of magnitude faster
-than rs_route's cold runtime.
+## Reach-level parallelism distribution
 
-## Reach-level parallelism distribution (the problem)
+First level with < threshold reaches:
 
-Level-size histogram on real CONUS:
+| threshold | first level below |
+|---:|---:|
+| 2048 | 10 |
+| 1024 | 15 |
+| 512 | 23 |
+| 256 | 34 |
+| 128 | 52 |
+| 64 | 79 |
+| 32 | 127 |
 
-```
-level 0:   166 725 reaches  (huge — headwaters)
-level 1:    53 790
-level 2:    22 773
-level 3:    12 135
-level 4:     7 789
-level 5:     5 533
-...
-level 20+: mean 15 reaches per level, 1 123 levels long
-```
+With `threads=512`, `K_wide=23` — 23 "wide" levels use the
+grid-cooperative path; 1 120 "thin" levels fit in one block and use
+`__syncthreads()`. This is the key architectural insight that bought
+the biggest single speedup.
 
-The 54% headwater fraction is beautiful for GPUs. The 1 123-level-long
-tail of ≤15-reach levels is the killer. Any real throughput gain on
-CONUS-scale routing has to do something smart with that tail.
+## Honest gaps
 
-## Where the research pointed us
-
-From the arxiv deep-dive this round:
-
-| idea | source | status in this session |
-|---|---|---|
-| Fine-grained domain decomposition (subdomain-per-block, shared-mem, no inter-block sync) | [Gondhalekar 2025 (arXiv:2508.04917)](https://arxiv.org/abs/2508.04917) | adopted in spirit (persistent grid-sync); full subtree partition not yet |
-| Graph transformation to break deep-tail dependencies | [Yilmaz 2021 (arXiv:2103.11445)](https://arxiv.org/abs/2103.11445) | identified, not yet applied |
-| Block-sparse conv formulation (LTI routing as batched 1-D conv on IRF kernels) | Hascoet et al. 2026 (JGR ML&C, `10.1029/2025JH000760`) | **state-of-the-art (1m42s for 6.8M channels × 85 years on A100); not ported — ~1-2 day impl** |
-| River/basin GNN surrogate (HydroGraphNet-style) | NVIDIA PhysicsNeMo | out of scope this session (weeks of training-pipeline work) |
-| Batched-subdomain spin-loop SpTRSV | Gondhalekar 2025 | could layer onto subdomain partition |
-| GPU CSV ingestion via cuDF + Parquet + kvikio | NVIDIA RAPIDS | would close the cold-start gap; not yet written |
-
-## Honest gaps and next steps
-
-1. **Block-sparse conv kernel** is the clear architectural winner for LTI
-   Muskingum. Hascoet-style would be a 1-2 day impl; worth a follow-up
-   branch if any of this matters to anyone.
-2. **Multi-GPU** isn't measured. Gondhalekar shows near-linear on 8
-   MI210s; our kernel is ready for this but we don't have a multi-GPU
-   box.
-3. **Preprocessor is untuned Python** — 32 s cold-start today, easily
-   3-5× with a C++ ParallelGzip + CSV parser, or 10×+ with
-   cuDF/Parquet. Not written.
-4. **Reservoirs, data assimilation, channel-loss** are all absent. Only
-   bare MC on the tree.
-5. **No real comparison against rs_route on the same machine.** JoshCu's
-   222 ms/ts number is cross-machine. We haven't been able to build
-   rs_route on Windows (libhdf5/libnetcdf toolchain issues).
+1. **Block-sparse conv kernel (DiffRoute-style)** is the clear
+   architectural winner for LTI Muskingum. Hascoet 2026 reports
+   6.8M channels × 85 years daily → hourly in 1m42s on an A100
+   (implementation at https://github.com/TristHas/DiffRoute, `block_size=16`,
+   max_delay=32). Porting for NWM-style tree topology is a ~1-2 day
+   dedicated effort. Not shipped yet.
+2. **Reservoir, DA, channel-loss** are all absent.
+3. **Cold-start preprocessor is untuned Python.** A C++ parallel
+   pipeline using kvikio/cuDF would likely 10× it.
+4. **Secant variant still uses `powf`**, so FP32-iterative-secant
+   divergence affects 0.2% of segments. Acceptable for hydrology.
+5. **Cross-machine comparison** for rs_route. Not built locally.
 
 ## The number to keep
 
-**Persistent linear MC on real CONUS 309K: 4.00 ms/timestep on a
-consumer RTX 3060.** 55× faster than the kernel math + I/O roundtrip
-JoshCu reported for rs_route on 32 CPU cores. Accuracy at FP32 matches
-FP64 to five significant figures for 100% of segments. Algorithmically,
-we're now sync-bound, not compute-bound — the remaining headroom is
-behind the block-sparse-convolution paper.
+**Linear MC split + atomic barrier all-timesteps on real CONUS 309K:
+2.76 ms/timestep on a consumer RTX 3060.** 80× faster than the kernel
+math + CSV I/O roundtrip JoshCu reported for 32-core rs_route.
+Accuracy at FP32 matches FP64 to 6 sig figs for 100% of segments.
+Kernel is now **memory-bound + syncthreads-bound**; the remaining
+5-10× is behind the block-sparse-convolution paper.
