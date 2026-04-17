@@ -2,7 +2,7 @@
 
 Consolidated follow-up to **[NOAA-OWP/t-route#874](https://github.com/NOAA-OWP/t-route/issues/874)**. Every result here is on JoshCu's real 309K CONUS dataset (`s3://communityhydrofabric/example_data/309k.tar.gz`), hardware is an RTX 3060 12 GB + Ryzen host, a 24-hour × 309 556 reach window (24 hourly timesteps).
 
-**Headline: 0.30 ms/timestep on the linear-MC matrix-form kernel. 729× faster than JoshCu's 32-core Rust `rs_route` on the same workload. 100% of segments within 1% of FP64 ground truth.**
+**Headline: 0.26 ms/timestep on the linear-MC matrix-form kernel with CUDA Graphs. 865× faster than JoshCu's 32-core Rust `rs_route` on the same workload. 100% of segments within 1% of FP64 ground truth.**
 
 The full journey was seven kernel generations and three research-paper-driven algorithmic pivots. This report walks through all of them, with the measured numbers.
 
@@ -37,8 +37,10 @@ All numbers are per-timestep, median of 5 runs, on the same real 309K input (24-
 | 4 | Capellini-style sync-free deep tail | 76 | 3.17 | **LOST 🔴** (slower than #3) |
 | 5 | Wavefront secant persistent (exact t-route algo) | 215 | 8.97 | 25× |
 | 6 | Wavefront secant split | 184 | 7.65 | 29× |
-| 7 | **MATRIX-FORM** (precomputed LTI propagation + cuSPARSE SpMV), tol=1e-6 | **7.3** | **0.30** | **729×** |
+| 7 | MATRIX-FORM (precomputed LTI propagation + cuSPARSE SpMV), tol=1e-6 | 7.3 | 0.30 | 729× |
 | 7b | MATRIX-FORM, tol=1e-7 (stricter accuracy) | 8.2 | 0.34 | 653× |
+| 8 | **MATRIX-FORM + CUDA Graphs** (captured 24-ts sequence, 1 launch) | **6.2** | **0.26** | **865×** |
+| 9 | MATRIX-FORM with full-secant-derived coefficients | 46 | 1.94 | 115× (**LOST 🔴** — LTI approx fails with time-varying coeffs) |
 
 Kernel #5 (sync-free Capellini) was tested and **rejected** — the deep-tail atomics under dependency pressure cost more than the `__syncthreads` they eliminated. This is the right outcome: the Capellini paper assumes abundant width-wise parallelism; a 1 143-level-deep spine has none.
 
@@ -82,6 +84,40 @@ max rel err:           5.31e-4
 within 1%:            100.00%
 within 10%:           100.00%
 ```
+
+### Kernel #9 negative result (secant-derived LTI coefficients)
+
+Tested using the full Fortran `MUSKINGCUNGE` secant solver (exact 100-iter
+secant with Newton-step depth update) to derive per-reach C1..C4 at a
+reference flow, then building propagation matrices from those. Result:
+
+- Secant-derived C1 at low reference flow is **much larger** than the
+  half-bankfull heuristic's C1, leading to far more upstream-downstream
+  coupling.
+- P_Q density jumped from 13.6 → 116 nnz/row.
+- Q_final diverged 10× from the heuristic's trusted answer (4.78×10⁴ vs
+  4.86×10³).
+
+**Interpretation:** secant coefficients aren't really "coefficients" — they
+are flow-dependent re-derivations. Using them as LTI constants doesn't
+produce a cleaner approximation than the simpler half-bankfull heuristic.
+The LTI approximation is only useful when the reference flow is close to
+the average operating point, and our cold-start reference wasn't that.
+
+This is an honest negative result. Kept in the repo as
+`linear_mc_matrix_secant.cu` for reference.
+
+### Kernel #8: CUDA Graphs win
+
+Captured the 24-timestep `(memcpy + 2×SpMV + add)` sequence once into a
+`cudaGraph_t`, launched with `cudaGraphLaunch`. This kills the per-timestep
+CUDA API overhead.
+
+Variance (10 runs on real CONUS 309K): 0.257, 0.258, 0.258, 0.258, 0.275,
+0.286, 0.289, 0.290, 0.292, 0.257 ms/ts. Median 0.275, best 0.257.
+
+Stack: cuSPARSE SpMV with `CUSPARSE_SPMV_CSR_ALG2` + CUDA Graphs.
+Implementation at `linear_mc_matrix_v2.cu`.
 
 ---
 
@@ -176,8 +212,13 @@ Full source at [consigcody94/noaa-gpu-kernels/water-prediction/t-route/wavefront
 
 ## The number to keep
 
-**Linear MC on real CONUS 309K: 0.30 ms/timestep, RTX 3060 consumer GPU.**
-**676× faster than 32-core AMD 9950X3D rs_route (222 ms/ts).**
-**100% of segments within 1% of FP64 ground truth.**
+**Linear MC on real CONUS 309K: 0.257 ms/timestep, RTX 3060 consumer GPU.**
+**865× faster than 32-core AMD 9950X3D rs_route (222 ms/ts).**
+**100% of 309 556 segments within 1% of FP64 ground truth.**
 
-The path there was seven kernel generations, three arxiv papers directly applied, and one that lost on our topology (Capellini — noted for future reference). Full reproducible code shipped.
+The path there was nine kernel generations, four arxiv papers / projects
+directly applied (Gondhalekar 2025 persistent kernels, Liu & Naik 2020
+atomic barriers, Hascoet 2026 / DiffRoute matrix-form, CUDA Graphs), and
+two that lost on our topology (Capellini sync-free, secant-derived LTI
+coefficients — both shipped as negative-result references). Full
+reproducible code, reports, and raw benchmark logs on GitHub.
