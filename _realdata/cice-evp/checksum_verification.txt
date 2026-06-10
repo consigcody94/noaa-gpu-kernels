@@ -1,0 +1,13 @@
+Provenance verification — 2026-06-10
+Zenodo record: https://zenodo.org/api/records/11248366 (DOI 10.5281/zenodo.11248366)
+Title: "Input data for 1d EVP model", published 2024-05-22
+
+Published MD5 (Zenodo API)                          | Local MD5 (Get-FileHash)                       | File                    | Bytes
+2a0bbaa1de601dab53375c670d5dfc3e                    | 2a0bbaa1de601dab53375c670d5dfc3e               | input_double_1d_v1.bin  | 192409288
+5ac738b7d6bd734abf37ed1301c95ce6                    | 5ac738b7d6bd734abf37ed1301c95ce6               | input_integer_1d.bin    | 15153288
+84eecf529ecb3a50b2b14d04bd31130c                    | 84eecf529ecb3a50b2b14d04bd31130c               | input_logical_1d.bin    | 5051096
+
+All three files at U:\AI\_noaa-research\noaa-gpu-kernels\sea-ice\cice-evp\ match the
+Zenodo-published checksums byte-for-byte. Files were already present in the repo clone;
+verified against the live Zenodo API rather than re-downloaded (only the ~few-KB record
+metadata was fetched). Full record JSON: zenodo_11248366_record.json in this directory.

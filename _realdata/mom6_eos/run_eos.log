@@ -1,0 +1,32 @@
+================================================
+  MOM6 Equation of State — REAL ARGO DATA
+  GDAC daily geo profiles 2026-05-15, QC 1/2
+================================================
+
+Loaded 270952 real (T,S,P) records
+  T: [-1.871, 31.659] degC | S: [2.597, 39.411] PSU | P: [0.1, 6002.3] dbar
+
+--- 1000000 points (real 270952 x 4 tiles, last tile truncated) ---
+  CPU: 2.0 ms | GPU: 0.028 ms | Speedup: 72.6x
+  Max rel (tiled 1000000 pts): 1.19e-07  NaN=0
+  Real-record accuracy (n=270952): max abs 1.221e-04 kg/m3 | max rel 1.192e-07
+    by region: open 1.192e-07 | polar 1.189e-07 | Med 1.189e-07
+    worst point: T=26.994 S=36.370 P=43.9  rho_cpu=1023.7541 rho_gpu=1023.7542
+  Status: PASS
+
+--- 5000000 points (real 270952 x 19 tiles, last tile truncated) ---
+  CPU: 9.0 ms | GPU: 0.081 ms | Speedup: 110.9x
+  Max rel (tiled 5000000 pts): 1.19e-07  NaN=0
+  Real-record accuracy (n=270952): max abs 1.221e-04 kg/m3 | max rel 1.192e-07
+    by region: open 1.192e-07 | polar 1.189e-07 | Med 1.189e-07
+    worst point: T=26.994 S=36.370 P=43.9  rho_cpu=1023.7541 rho_gpu=1023.7542
+  Status: PASS
+
+--- 10000000 points (real 270952 x 37 tiles, last tile truncated) ---
+  CPU: 19.0 ms | GPU: 0.236 ms | Speedup: 80.5x
+  Max rel (tiled 10000000 pts): 1.19e-07  NaN=0
+  Real-record accuracy (n=270952): max abs 1.221e-04 kg/m3 | max rel 1.192e-07
+    by region: open 1.192e-07 | polar 1.189e-07 | Med 1.189e-07
+    worst point: T=26.994 S=36.370 P=43.9  rho_cpu=1023.7541 rho_gpu=1023.7542
+  Status: PASS
+

@@ -1,0 +1,20 @@
+================================================
+  NCEPLIBS-sp Legendre + Synthesis GPU Kernel
+  RTX 3060 12GB
+================================================
+
+--- T62 (low-res): M=62, nlat=128, nfields=4, npln=2016 ---
+  CPU: 2.0 ms | GPU: 0.060 ms | Speedup: 33.3x
+  Max rel: 3.83e+03 | NaN: 0
+  Status: NEEDS REVIEW
+
+--- T126 (medium): M=126, nlat=256, nfields=4, npln=8128 ---
+  CPU: 20.0 ms | GPU: 0.110 ms | Speedup: 181.1x
+  Max rel: 3.51e+04 | NaN: 0
+  Status: NEEDS REVIEW
+
+--- T254 (high-res): M=254, nlat=512, nfields=2, npln=32640 ---
+  CPU: 130.0 ms | GPU: 0.322 ms | Speedup: 403.9x
+  Max rel: 1.54e+05 | NaN: 0
+  Status: NEEDS REVIEW
+

@@ -1,0 +1,180 @@
+{
+  "created": "2024-05-22T17:50:21.730782-04:00",
+  "modified": "2024-07-16T04:25:48.943449-04:00",
+  "id": 11248366,
+  "conceptrecid": "11244796",
+  "doi": "10.5281/zenodo.11248366",
+  "conceptdoi": "10.5281/zenodo.11244796",
+  "doi_url": "https://doi.org/10.5281/zenodo.11248366",
+  "metadata": {
+    "title": "Input data for 1d EVP model",
+    "doi": "10.5281/zenodo.11248366",
+    "publication_date": "2024-05-22",
+    "description": "<p>Data here is the input needed for running the 1D EVP model referenced here:</p>\n<p>Rasmussen, T. A. S., Poulsen, J., Ribergaard, M. H., &amp; Rethmeier, S. (2024). dmidk/cice-evp1d: Unit test refactorization of EVP solver CICE (refactorevp1d_v0.1). EGU V. Zenodo. https://doi.org/10.5281/zenodo.10782548.</p>\n<p>This is based on a restart on the 2020030100 from the NAAg domain.&nbsp;</p>\n<p>Ponsoni Leandro, Ribergaard Mads Hvid, Nielsen-Englyst Pia, Wulf Tore, Buus-Hinkler J&oslash;rgen, Kreiner Matilde Brandt, Rasmussen Till Andreas Soya; Greenlandic sea ice products with a focus on an updated operational forecast system; Frontiers in Marine Science, Volume 10,2023;10.3389/fmars.2023.979782 &nbsp;</p>\n<p>&nbsp;</p>",
+    "access_right": "open",
+    "creators": [
+      {
+        "name": "Rasmussen, Till Andreas Soya",
+        "affiliation": "Danish Meteorological Institute",
+        "orcid": "0000-0003-2931-5180"
+      }
+    ],
+    "contributors": [
+      {
+        "name": "Ribergaard, Mads Hvid",
+        "affiliation": null,
+        "type": "DataCollector",
+        "orcid": "0009-0008-9514-6833"
+      },
+      {
+        "name": "Jacob, Poulsen",
+        "affiliation": "Intel Corporation",
+        "type": "DataCollector"
+      }
+    ],
+    "keywords": [
+      "sea ice"
+    ],
+    "resource_type": {
+      "title": "Dataset",
+      "type": "dataset"
+    },
+    "license": {
+      "id": "cc-by-4.0"
+    },
+    "relations": {
+      "version": [
+        {
+          "index": 1,
+          "is_last": true,
+          "parent": {
+            "pid_type": "recid",
+            "pid_value": "11244796"
+          }
+        }
+      ]
+    }
+  },
+  "title": "Input data for 1d EVP model",
+  "links": {
+    "self": "https://zenodo.org/api/records/11248366",
+    "self_html": "https://zenodo.org/records/11248366",
+    "preview_html": "https://zenodo.org/records/11248366?preview=1",
+    "doi": "https://doi.org/10.5281/zenodo.11248366",
+    "self_doi": "https://doi.org/10.5281/zenodo.11248366",
+    "self_doi_html": "https://zenodo.org/doi/10.5281/zenodo.11248366",
+    "reserve_doi": "https://zenodo.org/api/records/11248366/draft/pids/doi",
+    "parent": "https://zenodo.org/api/records/11244796",
+    "parent_html": "https://zenodo.org/records/11244796",
+    "parent_doi": "https://doi.org/10.5281/zenodo.11244796",
+    "parent_doi_html": "https://zenodo.org/doi/10.5281/zenodo.11244796",
+    "self_iiif_manifest": "https://zenodo.org/api/iiif/record:11248366/manifest",
+    "self_iiif_sequence": "https://zenodo.org/api/iiif/record:11248366/sequence/default",
+    "files": "https://zenodo.org/api/records/11248366/files",
+    "media_files": "https://zenodo.org/api/records/11248366/media-files",
+    "archive": "https://zenodo.org/api/records/11248366/files-archive",
+    "archive_media": "https://zenodo.org/api/records/11248366/media-files-archive",
+    "latest": "https://zenodo.org/api/records/11248366/versions/latest",
+    "latest_html": "https://zenodo.org/records/11248366/latest",
+    "versions": "https://zenodo.org/api/records/11248366/versions",
+    "draft": "https://zenodo.org/api/records/11248366/draft",
+    "access_links": "https://zenodo.org/api/records/11248366/access/links",
+    "access_grants": "https://zenodo.org/api/records/11248366/access/grants",
+    "access_users": "https://zenodo.org/api/records/11248366/access/users",
+    "access_request": "https://zenodo.org/api/records/11248366/access/request",
+    "access": "https://zenodo.org/api/records/11248366/access",
+    "communities": "https://zenodo.org/api/records/11248366/communities",
+    "communities-suggestions": "https://zenodo.org/api/records/11248366/communities-suggestions",
+    "request_deletion": "https://zenodo.org/api/records/11248366/request-deletion",
+    "file_modification": "https://zenodo.org/api/records/11248366/file-modification",
+    "quota_increase": "https://zenodo.org/api/records/11248366/quota-increase",
+    "requests": "https://zenodo.org/api/records/11248366/requests"
+  },
+  "updated": "2024-07-16T04:25:48.943449-04:00",
+  "recid": "11248366",
+  "revision": 6,
+  "files": [
+    {
+      "id": "7f09acad-2948-4d90-a369-a9610f73b7ce",
+      "key": "input_double_1d_v1.bin",
+      "size": 192409288,
+      "checksum": "md5:2a0bbaa1de601dab53375c670d5dfc3e",
+      "links": {
+        "self": "https://zenodo.org/api/records/11248366/files/input_double_1d_v1.bin/content"
+      }
+    },
+    {
+      "id": "7e73926b-a3a9-44d8-81be-8ad0cb556154",
+      "key": "kernel.nml",
+      "size": 173,
+      "checksum": "md5:4e39b2f37ed6b86b54f162ec99d2dff8",
+      "links": {
+        "self": "https://zenodo.org/api/records/11248366/files/kernel.nml/content"
+      }
+    },
+    {
+      "id": "ca02e9ff-3a98-4062-97f5-7f2e5ff48daf",
+      "key": "input_logical_1d.bin",
+      "size": 5051096,
+      "checksum": "md5:84eecf529ecb3a50b2b14d04bd31130c",
+      "links": {
+        "self": "https://zenodo.org/api/records/11248366/files/input_logical_1d.bin/content"
+      }
+    },
+    {
+      "id": "6b07290e-1d4e-435f-a0bf-6bbbcce6b448",
+      "key": "input_integer_1d.bin",
+      "size": 15153288,
+      "checksum": "md5:5ac738b7d6bd734abf37ed1301c95ce6",
+      "links": {
+        "self": "https://zenodo.org/api/records/11248366/files/input_integer_1d.bin/content"
+      }
+    },
+    {
+      "id": "39b0f097-d074-4b9f-82d1-adf9dc453512",
+      "key": "input_double_2d.bin",
+      "size": 506975048,
+      "checksum": "md5:b9d7c1a9783daf329a693908f0a557d8",
+      "links": {
+        "self": "https://zenodo.org/api/records/11248366/files/input_double_2d.bin/content"
+      }
+    },
+    {
+      "id": "4c991820-d004-4e41-bcf9-e3b42820a064",
+      "key": "input_integer_2d.bin",
+      "size": 26682908,
+      "checksum": "md5:353dddebc341a73a54775ac0fa8219af",
+      "links": {
+        "self": "https://zenodo.org/api/records/11248366/files/input_integer_2d.bin/content"
+      }
+    },
+    {
+      "id": "48e9fc26-c906-482c-b607-a028a6cbafa4",
+      "key": "input_double_1d_v2.bin",
+      "size": 177256008,
+      "checksum": "md5:fecb0a1f79cb7259151bd71d3e966842",
+      "links": {
+        "self": "https://zenodo.org/api/records/11248366/files/input_double_1d_v2.bin/content"
+      }
+    }
+  ],
+  "swh": {},
+  "owners": [
+    {
+      "id": "1069858"
+    }
+  ],
+  "status": "published",
+  "stats": {
+    "downloads": 218,
+    "unique_downloads": 218,
+    "views": 305,
+    "unique_views": 298,
+    "version_downloads": 139,
+    "version_unique_downloads": 139,
+    "version_unique_views": 204,
+    "version_views": 209
+  },
+  "state": "done",
+  "submitted": true
+}

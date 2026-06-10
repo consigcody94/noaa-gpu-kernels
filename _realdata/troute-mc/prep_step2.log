@@ -1,0 +1,4 @@
+step-1 input: 10907 segments, 7592 reaches
+step-1 CPU outputs: flow [0,381.8] depth [0,8.168]
+wrote lcr_network_step2.bin
+warm dp: nonzero 10106/10907, mean 0.0697 m, max 8.1682 m

@@ -1,0 +1,22 @@
+=============================================================
+CICE EVP GPU Benchmark -- OPTIMIZED (Fused + Persistent)
+Domain: DMI operational, 631,387 active cells
+Subcycles (ndte): 1000
+=============================================================
+
+Reading input data...
+Running optimized separate kernels (1000 subcycles)...
+  Optimized separate: 1099.42 ms
+
+Persistent kernel: 192 blocks (4 per SM x 48 SMs)
+Running persistent fused kernel (1000 subcycles)...
+  Persistent fused:  1111.01 ms
+
+=============================================================
+RESULTS COMPARISON
+=============================================================
+  ndte:                  1000
+  Optimized separate:    1099.42 ms
+  Persistent fused:      1111.01 ms
+  Fused improvement:     -1.1%
+=============================================================

@@ -1,0 +1,31 @@
+================================================
+  MOM6 triDiagTS — REAL ARGO STRATIFICATION
+  GDAC daily geo profiles 2026-05-15, QC 1/2
+================================================
+
+Loaded 404 real Argo columns (nz 2..75 capped at 75)
+
+--- 101000 columns (404 real x 250) | K=1e-5 m2/s (abyssal), dt=3600s ---
+  CPU: 97.0 ms | GPU: 29.597 ms | Speedup: 3.3x
+  Max rel: T=3.54e-03  S=1.40e-03  NaN=0 | Max abs: T=1.35e-02 C  S=2.05e-02 PSU
+  worst T: col 101 level 50/51  cpu=3.82852 gpu=3.84206
+  Status: PASS (FP32)
+
+--- 101000 columns (404 real x 250) | K=1e-4 m2/s (thermocline), dt=3600s ---
+  CPU: 97.0 ms | GPU: 29.590 ms | Speedup: 3.3x
+  Max rel: T=1.47e-02  S=7.43e-03  NaN=0 | Max abs: T=5.46e-02 C  S=1.03e-01 PSU
+  worst T: col 101 level 50/51  cpu=3.70763 gpu=3.76220
+  Status: NEEDS REVIEW
+
+--- 101000 columns (404 real x 250) | K=1e-3 m2/s (strong), dt=3600s ---
+  CPU: 96.0 ms | GPU: 23.278 ms | Speedup: 4.1x
+  Max rel: T=3.68e-02  S=2.34e-02  NaN=0 | Max abs: T=9.41e-02 C  S=2.71e-01 PSU
+  worst T: col 102 level 19/20  cpu=2.55386 gpu=2.64795
+  Status: NEEDS REVIEW
+
+--- 101000 columns (404 real x 250) | const ea=eb=1.0 m (synthetic-scale) ---
+  CPU: 90.0 ms | GPU: 22.680 ms | Speedup: 4.0x
+  Max rel: T=3.30e-01  S=3.33e-01  NaN=0 | Max abs: T=3.53e+00 C  S=5.66e+00 PSU
+  worst T: col 77 level 63/64  cpu=2.76971 gpu=3.68446
+  Status: NEEDS REVIEW
+

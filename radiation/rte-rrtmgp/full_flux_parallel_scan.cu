@@ -296,7 +296,7 @@ int main() {
     printf("================================================================\n");
     printf("  Full Two-Stream Parallel Flux Solver Benchmark\n");
     printf("  3 Parallel Scans + 1 Pointwise vs Sequential Adding\n");
-    printf("  RTX 3060 12GB | CUDA %d.%d\n", CUDART_VERSION/1000, (CUDART_VERSION%1000)/10);
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s | CUDA %d.%d\n", dp_.name, CUDART_VERSION/1000, (CUDART_VERSION%1000)/10); }
     printf("================================================================\n\n");
 
     int nlay = NLAY, nlev = NLEV, ncol = NCOL;

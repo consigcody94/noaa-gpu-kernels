@@ -1,0 +1,57 @@
+================================================
+  NOAA-OWP Extended GPU Kernels — REAL DATA
+  TOPMODEL (Pyungkwang River) + PET (AORC)
+  RTX 5070 12GB (sm_120)
+================================================
+
+[data] TOPMODEL: Pyungkwang River, 30 bins, szm=0.0320 szq=0.63446 sbar0=0.31584, 950 real hourly steps
+[data] PET: 25582 real AORC hourly records (cat-87 + Laramie)
+
+========== TOPMODEL ==========
+
+--- TOPMODEL (REAL Pyungkwang data): 950 catchments ---
+  CPU: 0.0 ms | GPU: 0.030 ms | Speedup: 0.0x
+  Max rel (baseflow): 5.21e-07 | NaN: 0
+  Max rel (overland): 0.00e+00 (NaN 0) | Max rel (sbar): 1.09e-07 (NaN 0)
+  Status: PASS
+
+--- TOPMODEL (REAL Pyungkwang data): 100000 catchments ---
+  CPU: 5.0 ms | GPU: 0.059 ms | Speedup: 84.2x
+  Max rel (baseflow): 5.21e-07 | NaN: 0
+  Max rel (overland): 0.00e+00 (NaN 0) | Max rel (sbar): 1.09e-07 (NaN 0)
+  Status: PASS
+
+--- TOPMODEL (REAL Pyungkwang data): 1000000 catchments ---
+  CPU: 49.0 ms | GPU: 0.550 ms | Speedup: 89.0x
+  Max rel (baseflow): 5.21e-07 | NaN: 0
+  Max rel (overland): 0.00e+00 (NaN 0) | Max rel (sbar): 1.09e-07 (NaN 0)
+  Status: PASS
+
+--- TOPMODEL (REAL Pyungkwang data): 2700000 catchments ---
+  CPU: 132.0 ms | GPU: 1.448 ms | Speedup: 91.2x
+  Max rel (baseflow): 5.21e-07 | NaN: 0
+  Max rel (overland): 0.00e+00 (NaN 0) | Max rel (sbar): 1.09e-07 (NaN 0)
+  Status: PASS
+
+========== PENMAN-MONTEITH PET ==========
+
+--- Penman-Monteith PET (REAL AORC data): 25582 catchments ---
+  CPU: 0.0 ms | GPU: 0.012 ms | Speedup: 0.0x
+  Max rel: 4.31e-04 | NaN: 0
+  Status: PASS (fast exp)
+
+--- Penman-Monteith PET (REAL AORC data): 100000 catchments ---
+  CPU: 2.0 ms | GPU: 0.012 ms | Speedup: 161.5x
+  Max rel: 4.31e-04 | NaN: 0
+  Status: PASS (fast exp)
+
+--- Penman-Monteith PET (REAL AORC data): 1000000 catchments ---
+  CPU: 17.0 ms | GPU: 0.018 ms | Speedup: 966.9x
+  Max rel: 4.31e-04 | NaN: 0
+  Status: PASS (fast exp)
+
+--- Penman-Monteith PET (REAL AORC data): 2700000 catchments ---
+  CPU: 46.0 ms | GPU: 0.121 ms | Speedup: 379.2x
+  Max rel: 4.31e-04 | NaN: 0
+  Status: PASS (fast exp)
+

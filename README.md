@@ -73,7 +73,26 @@ nvcc -O3 -arch=sm_86 -o noaa_multi noaa_multi_kernel.cu
 
 ## Hardware
 
-All benchmarks run on a single NVIDIA RTX 3060 12GB. Production workloads (full CONUS NWM, global GFS) would need validation on WCOSS2 or cloud HPC (A100/H100).
+All benchmarks in the table above were run on a single NVIDIA RTX 3060 12GB. Production workloads (full CONUS NWM, global GFS) would need validation on WCOSS2 or cloud HPC (A100/H100).
+
+## Blackwell re-validation + real-data validation (2026-06)
+
+See [BLACKWELL_RESULTS.md](BLACKWELL_RESULTS.md): all 22 binaries rebuilt for sm_120
+(RTX 5070, CUDA 13.3) with zero source changes, then re-validated on **real public
+datasets** (DMI Arctic EVP benchmark, NWM Lower Colorado network, official COARE
+validation cruise, MOSAiC ice/snow/radiation, IGRA2 radiosondes, Argo profiles, real
+OWP basin forcing) instead of the synthetic generators. Notable outcomes:
+
+- Every kernel passes on real data; several at stricter tiers than synthetic.
+- The harnesses' FAIL/NEEDS-REVIEW labels at large synthetic sizes (NOAH-MP, CCPP,
+  MOSART) were **synthetic-extreme artifacts** — near-zero solution values under fast
+  math — proven by real-data runs and FP64 truth checks.
+- The MOM6 triDiagTS CPU *reference* contained an abandoned partial sweep that
+  clobbered its own inputs (fixed; the GPU kernel was always correct, matching a
+  clean FP64 Thomas solve to ~6e-7).
+- The UPP CAPE synthetic generator fed columns in inverted vertical order (fixed);
+  the t-route FP32 `reach_parallel` synthetic accuracy failure does not reproduce on
+  a real river network (FP64 `troute_mc_final` is bit-identical-class there).
 
 ## Author
 

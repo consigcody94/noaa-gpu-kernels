@@ -1,0 +1,26 @@
+================================================
+  tuv-x Delta-Eddington GPU Benchmark
+  Addresses NCAR/tuv-x issue #64
+  RTX 3060 12GB
+================================================
+
+--- 10000 columns x 51 layers x 1 wavelengths (simulated as 10000 total) ---
+  CPU: 30.0 ms | GPU: 0.167 ms | Speedup: 179.7x
+  Max rel: eup=1.44e-05  edn=3.75e-06  edr=1.02e-06
+  NaN: 0  Negative: 0  [PASS]
+
+--- 100000 columns x 51 layers x 1 wavelengths (simulated as 100000 total) ---
+  CPU: 305.0 ms | GPU: 2.956 ms | Speedup: 103.2x
+  Max rel: eup=1.71e-05  edn=3.97e-06  edr=1.06e-06
+  NaN: 0  Negative: 0  [PASS]
+
+--- 500000 columns x 51 layers x 1 wavelengths (simulated as 500000 total) ---
+  CPU: 1533.0 ms | GPU: 14.484 ms | Speedup: 105.8x
+  Max rel: eup=1.71e-05  edn=4.19e-06  edr=1.06e-06
+  NaN: 0  Negative: 0  [PASS]
+
+--- 1000000 columns x 51 layers x 1 wavelengths (simulated as 1000000 total) ---
+  CPU: 3026.0 ms | GPU: 28.747 ms | Speedup: 105.3x
+  Max rel: eup=1.71e-05  edn=4.61e-06  edr=1.06e-06
+  NaN: 0  Negative: 0  [PASS]
+

@@ -1,0 +1,27 @@
+================================================
+  CCPP tridi1 (PBL solver) — REAL DATA
+  IGRA2 radiosonde profiles (NOAA NCEI)
+================================================
+
+Loaded 19660 REAL columns x 64 levels from tridi_real.bin
+--- 10000 columns x 64 levels (replication 0.51x of 19660 real cols) ---
+  CPU: 5.0 ms | GPU: 0.076 ms | Speedup: 66.1x
+  Max abs: 4.12e-04 | Max rel: 5.60e-04 | NaN: 0 | >0.01%: 2/640000
+  Status: PASS (fast math)
+
+  [diag] worst rel 5.60e-04 at col 646 (real col 646, field u, sounding 161), level k=50, cpu=-1.849234e-05 gpu=-1.850270e-05
+
+--- 100000 columns x 64 levels (replication 5.09x of 19660 real cols) ---
+  CPU: 48.0 ms | GPU: 0.864 ms | Speedup: 55.6x
+  Max abs: 6.10e-04 | Max rel: 5.60e-04 | NaN: 0 | >0.01%: 11/6400000
+  Status: PASS (fast math)
+
+  [diag] worst rel 5.60e-04 at col 646 (real col 646, field u, sounding 161), level k=50, cpu=-1.849234e-05 gpu=-1.850270e-05
+
+--- 500000 columns x 64 levels (replication 25.43x of 19660 real cols) ---
+  CPU: 239.0 ms | GPU: 4.942 ms | Speedup: 48.4x
+  Max abs: 6.10e-04 | Max rel: 5.60e-04 | NaN: 0 | >0.01%: 52/32000000
+  Status: PASS (fast math)
+
+  [diag] worst rel 5.60e-04 at col 646 (real col 646, field u, sounding 161), level k=50, cpu=-1.849234e-05 gpu=-1.850270e-05
+

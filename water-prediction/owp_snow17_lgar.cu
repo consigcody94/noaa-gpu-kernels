@@ -520,7 +520,7 @@ void bench_lgar(int ncatch) {
 int main() {
     printf("================================================\n");
     printf("  NOAA-OWP Snow17 + LGAR GPU Kernels\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     printf("========== SNOW17 ==========\n\n");

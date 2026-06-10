@@ -1,0 +1,64 @@
+================================================
+  NOAA-OWP Batched GPU Kernels — REAL DATA
+  CFE Nash Cascade (cat-87 AORC) +
+  NOAH-MP Tridiag (Bondville 1998)
+  RTX 5070 12GB (sm_120)
+================================================
+
+[data] Nash library: 1440 real (state,flux) pairs (2 paramsets x 720 h, cat-87 AORC Dec 2015)
+[data] Tridiag: 17521 real Richards systems (nsoil=4, Bondville 1998, 30-min steps)
+
+========== CFE NASH CASCADE ==========
+
+--- Nash Cascade (REAL cat-87 data): 1440 catchments ---
+  CPU: 0.0 ms | GPU: 0.064 ms | Speedup: 0.0x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/1440
+  Status: PASS
+
+--- Nash Cascade (REAL cat-87 data): 100000 catchments ---
+  CPU: 0.0 ms | GPU: 0.481 ms | Speedup: 0.0x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/100000
+  Status: PASS
+
+--- Nash Cascade (REAL cat-87 data): 1000000 catchments ---
+  CPU: 5.0 ms | GPU: 5.057 ms | Speedup: 1.0x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/1000000
+  Status: PASS
+
+--- Nash Cascade (REAL cat-87 data): 2700000 catchments ---
+  CPU: 16.0 ms | GPU: 13.822 ms | Speedup: 1.2x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/2700000
+  Status: PASS
+
+========== NOAH-MP TRIDIAG SOLVER ==========
+
+--- NOAH-MP Tridiag Solver (REAL Bondville data): 17521 columns ---
+  CPU: 1.0 ms | GPU: 0.010 ms | Speedup: 96.7x
+  Max abs: 7.45e-09 | Max rel: 3.35e-05 | Max residual: 2.98e-08
+  NaN: 0 | >0.01% err: 0/175210
+  Status: PASS (FP32 rounding)
+
+--- NOAH-MP Tridiag Solver (REAL Bondville data): 100000 columns ---
+  CPU: 3.0 ms | GPU: 0.022 ms | Speedup: 136.5x
+  Max abs: 7.45e-09 | Max rel: 3.35e-05 | Max residual: 2.98e-08
+  NaN: 0 | >0.01% err: 0/1000000
+  Status: PASS (FP32 rounding)
+
+--- NOAH-MP Tridiag Solver (REAL Bondville data): 1000000 columns ---
+  CPU: 33.0 ms | GPU: 0.418 ms | Speedup: 78.9x
+  Max abs: 7.45e-09 | Max rel: 3.35e-05 | Max residual: 2.98e-08
+  NaN: 0 | >0.01% err: 0/10000000
+  Status: PASS (FP32 rounding)
+
+--- NOAH-MP Tridiag Solver (REAL Bondville data): 2700000 columns ---
+  CPU: 91.0 ms | GPU: 1.140 ms | Speedup: 79.8x
+  Max abs: 7.45e-09 | Max rel: 3.35e-05 | Max residual: 2.98e-08
+  NaN: 0 | >0.01% err: 0/27000000
+  Status: PASS (FP32 rounding)
+
+================================================
+  Notes:
+  - Kernel math and CPU references unchanged
+  - Inputs are real NOAA-OWP datasets; batches
+    larger than the real library tile it (c % n)
+================================================

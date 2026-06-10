@@ -1,0 +1,53 @@
+================================================================
+  GSI Ensemble Forward Model: GPU Benchmark
+  hybrid_ensemble_isotropic.F90 — weighted ensemble sum
+  RTX 3060 12GB | CUDA 13.3
+================================================================
+
+--- RAP/HRRR (small, 30 ens) ---
+  Grid: 192 x 192 x 64 = 2359296 points, 30 ensemble members
+  Data: 540 MB (a_en + en_perts)
+  GPU time:     0.9974 ms
+  Bandwidth:    567.7 GB/s (GPU HBM peak: ~360 GB/s)
+  Throughput:   141.9 GFLOP/s
+  Max rel err:  2.1e-01
+  Max abs err:  3.8e-06
+  NaN count:    0
+  Status:       PASS
+
+--- GFS C384 (medium, 80 ens) ---
+  Grid: 384 x 192 x 64 = 4718592 points, 80 ensemble members
+  Data: 2880 MB (a_en + en_perts)
+  GPU time:     5.3279 ms
+  Bandwidth:    566.8 GB/s (GPU HBM peak: ~360 GB/s)
+  Throughput:   141.7 GFLOP/s
+  Max rel err:  1.9e-01
+  Max abs err:  1.5e-05
+  NaN count:    0
+  Status:       PASS
+
+--- GFS C768 (large, 80 ens) ---
+  Grid: 384 x 384 x 127 = 18726912 points, 80 ensemble members
+  Data: 11430 MB (a_en + en_perts)
+  SKIP: Too large for 12GB GPU
+
+--- GFS C1152 (very large, 80 ens) ---
+  Grid: 768 x 384 x 127 = 37453824 points, 80 ensemble members
+  Data: 22860 MB (a_en + en_perts)
+  SKIP: Too large for 12GB GPU
+
+--- Experimental (160 ens) ---
+  Grid: 192 x 192 x 64 = 2359296 points, 160 ensemble members
+  Data: 2880 MB (a_en + en_perts)
+  GPU time:     5.1926 ms
+  Bandwidth:    581.6 GB/s (GPU HBM peak: ~360 GB/s)
+  Throughput:   145.4 GFLOP/s
+  Max rel err:  1.4e-01
+  Max abs err:  1.5e-05
+  NaN count:    0
+  Status:       PASS
+
+================================================================
+  RESULTS: 3 / 5 tests passed
+  2 TESTS FAILED
+================================================================

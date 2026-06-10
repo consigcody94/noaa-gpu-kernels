@@ -1,0 +1,11 @@
+GMM00010868: 1063 soundings, 29 accepted -> 116 columns
+RQM00078526: 1044 soundings, 1035 accepted -> 4140 columns
+USM00070026: 1948 soundings, 1772 accepted -> 7088 columns
+USM00072250: 1051 soundings, 1039 accepted -> 4156 columns
+USM00072403: 1046 soundings, 1040 accepted -> 4160 columns
+TOTAL real columns: 19660 (4915 soundings x 4 fields)
+diag dominance margin: min 0.999996 (must be ~1.0)
+|cl| range: 2.171e-05 .. 6.433e+01
+cm  range: 1.000e+00 .. 1.181e+02
+r1  range: -7.627e+01 .. 3.081e+02
+wrote U:\AI\_noaa-research\noaa-gpu-kernels\_realdata\ccpp_tridi1\tridi_real.bin (20.1 MB)

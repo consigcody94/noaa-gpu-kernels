@@ -868,7 +868,7 @@ int main(int argc, char** argv) {
     printf("=============================================================\n");
     printf("  Subcycles (ndte):  %d\n", ndte);
     printf("  CPU time:          %.2f ms\n", cpu_ms);
-    printf("  GPU time:          %.2f ms  (RTX 3060)\n", gpu_ms);
+    printf("  GPU time:          %.2f ms\n", gpu_ms);
     printf("  Speedup:           %.1fx\n", cpu_ms / gpu_ms);
     printf("  Validation:        %s\n",
            (max_rel_err_u < 1e-6 && max_rel_err_v < 1e-6) ? "PASS" : "CHECK");

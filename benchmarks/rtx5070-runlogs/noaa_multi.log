@@ -1,0 +1,74 @@
+================================================
+  Multi-Model NOAA GPU Kernels
+  CCPP + Icepack + CICE + MOSART
+  RTX 3060 12GB
+================================================
+
+========== CCPP tridi1 (PBL solver) ==========
+
+--- 10000 columns x 64 levels ---
+  CPU: 5.0 ms | GPU: 0.077 ms | Speedup: 64.9x
+  Max abs: 3.58e-07 | Max rel: 2.22e-03 | NaN: 0 | >0.01%: 35/640000
+  Status: PASS (fast math)
+
+--- 100000 columns x 64 levels ---
+  CPU: 55.0 ms | GPU: 0.916 ms | Speedup: 60.0x
+  Max abs: 4.77e-07 | Max rel: 7.13e-02 | NaN: 0 | >0.01%: 428/6400000
+  Status: NEEDS REVIEW
+
+--- 500000 columns x 64 levels ---
+  CPU: 263.0 ms | GPU: 5.271 ms | Speedup: 49.9x
+  Max abs: 4.77e-07 | Max rel: 4.55e-01 | NaN: 0 | >0.01%: 1990/32000000
+  Status: NEEDS REVIEW
+
+========== Icepack delta-Eddington ==========
+
+--- 10000 ice columns ---
+  CPU: 1.0 ms | GPU: 0.012 ms | Speedup: 81.0x
+  Max abs: 1.22e-04 | Max rel: 4.30e-07 | NaN: 0 | >0.01%: 0/10000
+  Status: PASS
+
+--- 100000 ice columns ---
+  CPU: 10.0 ms | GPU: 0.034 ms | Speedup: 295.1x
+  Max abs: 1.53e-04 | Max rel: 4.49e-07 | NaN: 0 | >0.01%: 0/100000
+  Status: PASS
+
+--- 500000 ice columns ---
+  CPU: 45.0 ms | GPU: 0.015 ms | Speedup: 3041.7x
+  Max abs: 1.83e-04 | Max rel: 5.62e-07 | NaN: 0 | >0.01%: 0/500000
+  Status: PASS
+
+========== CICE EVP Dynamics ==========
+
+--- 10000 cells x 120 subcycles ---
+  CPU: 32.0 ms | GPU: 0.181 ms | Speedup: 176.9x
+  Max rel (uvel): 5.32e-06 | NaN: 0
+  Status: PASS
+
+--- 100000 cells x 120 subcycles ---
+  CPU: 329.0 ms | GPU: 0.595 ms | Speedup: 553.3x
+  Max rel (uvel): 9.40e-05 | NaN: 0
+  Status: PASS
+
+--- 500000 cells x 120 subcycles ---
+  CPU: 1631.0 ms | GPU: 2.774 ms | Speedup: 588.0x
+  Max rel (uvel): 9.40e-05 | NaN: 0
+  Status: PASS
+
+========== MOSART Kinematic Wave ==========
+
+--- 100000 reaches ---
+  CPU: 4.0 ms | GPU: 0.350 ms | Speedup: 11.4x
+  Max rel (storage): 5.26e-04 | NaN: 0
+  Status: PASS (fast math)
+
+--- 500000 reaches ---
+  CPU: 21.0 ms | GPU: 1.785 ms | Speedup: 11.8x
+  Max rel (storage): 1.24e-03 | NaN: 0
+  Status: PASS (fast math)
+
+--- 1000000 reaches ---
+  CPU: 42.0 ms | GPU: 3.635 ms | Speedup: 11.6x
+  Max rel (storage): 3.21e-02 | NaN: 0
+  Status: NEEDS REVIEW
+

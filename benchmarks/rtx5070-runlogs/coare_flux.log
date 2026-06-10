@@ -1,0 +1,25 @@
+================================================
+  COARE 3.6 Air-Sea Flux GPU Kernel
+  RTX 3060 12GB
+================================================
+
+--- 10000 ocean grid points ---
+  CPU: 20.0 ms | GPU: 0.029 ms | Speedup: 700.1x
+  Max rel: tau=1.43e-06  hsb=2.27e-06  hlb=8.31e-04  NaN=0
+  Status: PASS
+
+--- 100000 ocean grid points ---
+  CPU: 192.0 ms | GPU: 0.065 ms | Speedup: 2934.7x
+  Max rel: tau=1.76e-06  hsb=4.64e-06  hlb=1.01e-03  NaN=0
+  Status: PASS (fast math)
+
+--- 500000 ocean grid points ---
+  CPU: 980.0 ms | GPU: 0.267 ms | Speedup: 3669.8x
+  Max rel: tau=2.74e-06  hsb=4.64e-06  hlb=2.07e-03  NaN=0
+  Status: PASS (fast math)
+
+--- 1000000 ocean grid points ---
+  CPU: 1973.0 ms | GPU: 0.539 ms | Speedup: 3659.1x
+  Max rel: tau=5.41e-06  hsb=4.64e-06  hlb=2.07e-03  NaN=0
+  Status: PASS (fast math)
+

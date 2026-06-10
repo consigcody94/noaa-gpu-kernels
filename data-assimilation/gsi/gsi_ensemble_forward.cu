@@ -118,7 +118,7 @@ int main() {
     printf("================================================================\n");
     printf("  GSI Ensemble Forward Model: GPU Benchmark\n");
     printf("  hybrid_ensemble_isotropic.F90 — weighted ensemble sum\n");
-    printf("  RTX 3060 12GB | CUDA %d.%d\n", CUDART_VERSION/1000, (CUDART_VERSION%1000)/10);
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s | CUDA %d.%d\n", dp_.name, CUDART_VERSION/1000, (CUDART_VERSION%1000)/10); }
     printf("================================================================\n\n");
 
     // Test configurations matching realistic GSI setups

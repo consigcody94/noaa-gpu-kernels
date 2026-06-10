@@ -379,7 +379,7 @@ int main() {
     printf("================================================\n");
     printf("  Multi-Model NOAA GPU Kernels\n");
     printf("  CCPP + Icepack + CICE + MOSART\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     // ---- CCPP tridi1 ----

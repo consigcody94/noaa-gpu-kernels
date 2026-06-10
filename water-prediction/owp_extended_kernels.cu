@@ -577,7 +577,7 @@ int main() {
     printf("================================================\n");
     printf("  NOAA-OWP Extended GPU Kernels\n");
     printf("  Diffusive Wave + TOPMODEL + PET\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     printf("========== DIFFUSIVE WAVE TRIDIAG ==========\n\n");

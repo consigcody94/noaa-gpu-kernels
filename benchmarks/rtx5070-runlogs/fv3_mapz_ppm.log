@@ -1,0 +1,50 @@
+================================================
+  FV3 Vertical Remapping (map1_ppm) GPU Kernel
+  RTX 3060 12GB
+================================================
+
+--- km=64, ncol=100000 ---
+  CPU: 396 ms | GPU: 0.90 ms | Speedup: 440.4x
+  Max rel: 3.55e-07  NaN: 0
+  Status: PASS
+
+--- km=64, ncol=500000 ---
+  CPU: 1947 ms | GPU: 3.97 ms | Speedup: 490.3x
+  Max rel: 4.05e-07  NaN: 0
+  Status: PASS
+
+--- km=64, ncol=1000000 ---
+  CPU: 3875 ms | GPU: 7.95 ms | Speedup: 487.4x
+  Max rel: 4.31e-07  NaN: 0
+  Status: PASS
+
+--- km=91, ncol=100000 ---
+  CPU: 565 ms | GPU: 1.73 ms | Speedup: 326.0x
+  Max rel: 3.72e-07  NaN: 0
+  Status: PASS
+
+--- km=91, ncol=500000 ---
+  CPU: 2787 ms | GPU: 7.60 ms | Speedup: 366.7x
+  Max rel: 3.72e-07  NaN: 0
+  Status: PASS
+
+--- km=91, ncol=1000000 ---
+  CPU: 5649 ms | GPU: 15.41 ms | Speedup: 366.5x
+  Max rel: 3.72e-07  NaN: 0
+  Status: PASS
+
+--- km=127, ncol=100000 ---
+  CPU: 753 ms | GPU: 2.51 ms | Speedup: 299.6x
+  Max rel: 3.50e-07  NaN: 0
+  Status: PASS
+
+--- km=127, ncol=500000 ---
+  CPU: 4008 ms | GPU: 10.86 ms | Speedup: 368.9x
+  Max rel: 3.57e-07  NaN: 0
+  Status: PASS
+
+--- km=127, ncol=1000000 ---
+  CPU: 7661 ms | GPU: 21.14 ms | Speedup: 362.4x
+  Max rel: 3.66e-07  NaN: 0
+  Status: PASS
+

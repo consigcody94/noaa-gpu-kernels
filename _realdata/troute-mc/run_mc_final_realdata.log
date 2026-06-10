@@ -1,0 +1,13 @@
+================================================
+  t-route MC GPU Routing (FP64) - REAL DATA
+  Network: NOAA-OWP/t-route LowerColorado_TX
+  (NWM RouteLink + AnA CHRTOUT 2021-08-23 13Z)
+================================================
+
+--- 7592 reaches (10907 segments) ---
+  CPU:     5.0 ms
+  GPU:     2.824 ms (1.8x vs CPU)
+  Max abs: 5.68e-14  Max rel: 2.75e-14
+  NaN: 0, >0.1% err: 0/10907 (0.0000%)
+  Status:  PASS (bit-identical)
+

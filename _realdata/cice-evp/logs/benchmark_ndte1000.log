@@ -1,0 +1,42 @@
+=============================================================
+CICE EVP GPU Benchmark -- Real DMI Arctic Data
+Domain: DMI operational, 1 March 2020 (winter)
+Active T-cells (na): 631387, U-cells (nb): 608124, navel: 660613
+Subcycles (ndte): 1000
+=============================================================
+
+EVP parameters: arlx1i=1.388889e-03, denom1=0.9986130374, brlx=1000.0
+  e_factor=2.500000e-01, epp2i=0.250000
+
+Expected file size: 192.4 MB (24051161 doubles)
+Reading input data...
+  Read input_double_1d_v1.bin: 192.4 MB
+  Sample: strength[0]=1.893606e-06, uvel[0]=7.789914e-03, DminTarea[0]=4.175743e-04
+  Read input_integer_1d.bin: 15.2 MB
+  Neighbor indices: ee[0]=631393, ne[0]=631388, se[0]=631389
+  Read input_logical_1d.bin: 5.1 MB
+  Active T-cells: 631387 / 631387, Active U-cells: 608124 / 631387
+
+Running CPU benchmark (1000 subcycles)...
+  CPU time: 89319.72 ms
+
+Allocating GPU memory...
+GPU warmup...
+
+Running GPU benchmark (1000 subcycles)...
+  GPU time: 1079.01 ms
+
+Validating GPU vs CPU...
+  Max relative error uvel: 1.174192e+04
+  Max relative error vvel: 5.614902e+03
+  Max relative error stressp_1: 1.797428e-01
+
+=============================================================
+RESULTS: Real DMI Arctic Data (631,387 active cells)
+=============================================================
+  Subcycles (ndte):  1000
+  CPU time:          89319.72 ms
+  GPU time:          1079.01 ms  (RTX 3060)
+  Speedup:           82.8x
+  Validation:        CHECK
+=============================================================

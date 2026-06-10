@@ -1,0 +1,25 @@
+================================================
+  CTSM Tridiagonal Solver GPU Kernel
+  RTX 3060 12GB
+================================================
+
+--- 100000 land columns ---
+  CPU: 14.0 ms | GPU: 0.169 ms | Speedup: 82.6x
+  Max rel: 3.03e-02 | Max residual: 3.58e-07 | NaN: 0
+  Status: NEEDS REVIEW
+
+--- 500000 land columns ---
+  CPU: 63.0 ms | GPU: 0.891 ms | Speedup: 70.7x
+  Max rel: 1.33e-01 | Max residual: 3.58e-07 | NaN: 0
+  Status: NEEDS REVIEW
+
+--- 1000000 land columns ---
+  CPU: 123.0 ms | GPU: 1.798 ms | Speedup: 68.4x
+  Max rel: 1.33e-01 | Max residual: 4.17e-07 | NaN: 0
+  Status: NEEDS REVIEW
+
+--- 2000000 land columns ---
+  CPU: 274.0 ms | GPU: 3.654 ms | Speedup: 75.0x
+  Max rel: 1.80e-01 | Max residual: 4.17e-07 | NaN: 0
+  Status: NEEDS REVIEW
+

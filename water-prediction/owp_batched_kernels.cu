@@ -378,7 +378,7 @@ int main() {
     printf("================================================\n");
     printf("  NOAA-OWP Batched GPU Kernels\n");
     printf("  CFE Nash Cascade + NOAH-MP Tridiag Solver\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     // Nash Cascade benchmarks

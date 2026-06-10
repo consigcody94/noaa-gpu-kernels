@@ -321,7 +321,7 @@ int main() {
     printf("================================================\n");
     printf("  tuv-x Delta-Eddington GPU Benchmark\n");
     printf("  Addresses NCAR/tuv-x issue #64\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     int nlyr = 51;  // typical atmosphere for UV photolysis

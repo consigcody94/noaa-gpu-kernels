@@ -1,0 +1,28 @@
+# local build outputs
+_build/
+_build_fix/
+
+# DMI EVP benchmark inputs (download per sea-ice/cice-evp/README.md; ~200 MB)
+sea-ice/cice-evp/input_double_1d_v1.bin
+sea-ice/cice-evp/input_integer_1d.bin
+sea-ice/cice-evp/input_logical_1d.bin
+
+# real-data validation: keep docs/scripts/harnesses, exclude bulk data + upstream clones
+_realdata/*/data/
+_realdata/*/upstream/
+_realdata/**/*.nc
+_realdata/**/*.bin
+_realdata/**/*.zip
+
+# build artifacts and caches anywhere
+*.exe
+*.exp
+*.lib
+*.pdb
+__pycache__/
+
+
+# large derived intermediates (regenerate via prep scripts)
+_realdata/icepack_dEdd/ice_columns_real.csv
+_realdata/troute-mc/lcr_network_ids.csv
+

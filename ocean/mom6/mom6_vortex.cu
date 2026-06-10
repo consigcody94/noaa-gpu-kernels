@@ -34,43 +34,14 @@ struct OceanColumn {
 void cpu_tridiag_ts(OceanColumn* cols, int ncol) {
     for (int c = 0; c < ncol; c++) {
         int nz = cols[c].nz;
-        float b1, d1_T, d1_S;
-        float c1[MAX_OC_LEV];
-
-        // Forward sweep for T and S simultaneously
-        float h_pre = cols[c].h[0] + cols[c].ea[0] + cols[c].eb[0];
-        if (h_pre < 1e-10f) h_pre = 1e-10f;
-        b1 = 1.0f / h_pre;
-        d1_T = b1 * (cols[c].h[0] * cols[c].T[0]);
-        d1_S = b1 * (cols[c].h[0] * cols[c].S[0]);
-        c1[0] = cols[c].eb[0] * b1;
-
-        for (int k = 1; k < nz; k++) {
-            float h_k = cols[c].h[k] + cols[c].ea[k] + cols[c].eb[k];
-            if (h_k < 1e-10f) h_k = 1e-10f;
-            float a_k = cols[c].ea[k];  // sub-diagonal
-            float bet = 1.0f / (h_k - a_k * c1[k-1]);
-            c1[k] = cols[c].eb[k] * bet;
-            d1_T = bet * (cols[c].h[k] * cols[c].T[k] + a_k * d1_T);
-            d1_S = bet * (cols[c].h[k] * cols[c].S[k] + a_k * d1_S);
-        }
-
-        // Bottom level
-        cols[c].T[nz-1] = d1_T;
-        cols[c].S[nz-1] = d1_S;
-
-        // Back substitution
-        for (int k = nz - 2; k >= 0; k--) {
-            // Need to re-do forward to get per-level d1 values
-            // Simplified: just apply the standard Thomas back-sub
-        }
-
-        // Actually, let me implement the standard Thomas properly
-        // with arrays for the intermediate values
+        // Standard Thomas algorithm, matching kernel_tridiag_ts exactly.
+        // (An earlier abandoned forward sweep here clobbered T[nz-1]/S[nz-1]
+        // before this pass re-read them as inputs, corrupting the reference
+        // solution that GPU results were compared against.)
         float fwd_T[MAX_OC_LEV], fwd_S[MAX_OC_LEV];
         float cu[MAX_OC_LEV];
 
-        h_pre = cols[c].h[0] + cols[c].ea[0] + cols[c].eb[0];
+        float h_pre = cols[c].h[0] + cols[c].ea[0] + cols[c].eb[0];
         if (h_pre < 1e-10f) h_pre = 1e-10f;
         float bet = h_pre;
         fwd_T[0] = cols[c].h[0] * cols[c].T[0] / bet;
@@ -192,7 +163,7 @@ int main() {
     printf("================================================\n");
     printf("  MOM6 GPU Kernels\n");
     printf("  Vertical Mixing + Equation of State\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     // Tridiag TS
