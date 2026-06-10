@@ -1,0 +1,64 @@
+================================================================
+  GSI Recursive Filter: Parallel Prefix Scan Benchmark
+  one_color4 from raflib.f90 — IIR forward-backward filter
+  RTX 3060 12GB | CUDA 13.3
+================================================================
+
+  ngauss=1 nstr= 1000 slen= 64 | total_strings=  1000 | GPU=0.0123 ms | max_rel=7.3e-04 err_cnt=7 NaN=0 | PASS
+  ngauss=1 nstr= 1000 slen=128 | total_strings=  1000 | GPU=0.0127 ms | max_rel=1.2e-03 err_cnt=20 NaN=0 | FAIL
+    Sample: ref[0]=-5.904382 gpu[0]=-5.904382 | ref[1]=1.440946 gpu[1]=1.440946
+  ngauss=1 nstr= 1000 slen=256 | total_strings=  1000 | GPU=0.0305 ms | max_rel=4.0e-03 err_cnt=37 NaN=0 | FAIL
+    Sample: ref[0]=-4.206109 gpu[0]=-4.206109 | ref[1]=-0.417313 gpu[1]=-0.417313
+  ngauss=1 nstr= 4000 slen= 64 | total_strings=  4000 | GPU=0.0150 ms | max_rel=3.0e-02 err_cnt=41 NaN=0 | FAIL
+    Sample: ref[0]=-5.031317 gpu[0]=-5.031317 | ref[1]=2.131381 gpu[1]=2.131381
+  ngauss=1 nstr= 4000 slen=128 | total_strings=  4000 | GPU=0.0223 ms | max_rel=2.5e-02 err_cnt=86 NaN=0 | FAIL
+    Sample: ref[0]=-10.843824 gpu[0]=-10.843823 | ref[1]=9.335114 gpu[1]=9.335114
+  ngauss=1 nstr= 4000 slen=256 | total_strings=  4000 | GPU=0.0393 ms | max_rel=5.1e-02 err_cnt=147 NaN=0 | FAIL
+    Sample: ref[0]=-6.080861 gpu[0]=-6.080861 | ref[1]=0.094560 gpu[1]=0.094560
+  ngauss=1 nstr= 8000 slen= 64 | total_strings=  8000 | GPU=0.0298 ms | max_rel=4.4e-03 err_cnt=83 NaN=0 | FAIL
+    Sample: ref[0]=-7.355836 gpu[0]=-7.355836 | ref[1]=5.905015 gpu[1]=5.905015
+  ngauss=1 nstr= 8000 slen=128 | total_strings=  8000 | GPU=0.0418 ms | max_rel=1.2e-02 err_cnt=146 NaN=0 | FAIL
+    Sample: ref[0]=-4.505881 gpu[0]=-4.505881 | ref[1]=0.628185 gpu[1]=0.628185
+  ngauss=1 nstr= 8000 slen=256 | total_strings=  8000 | GPU=0.0782 ms | max_rel=3.4e-02 err_cnt=328 NaN=0 | FAIL
+    Sample: ref[0]=-2.540644 gpu[0]=-2.540644 | ref[1]=-0.761224 gpu[1]=-0.761224
+  ngauss=3 nstr= 1000 slen= 64 | total_strings=  3000 | GPU=0.0132 ms | max_rel=1.5e-03 err_cnt=37 NaN=0 | FAIL
+    Sample: ref[0]=-4.801294 gpu[0]=-4.801294 | ref[1]=5.096118 gpu[1]=5.096117
+  ngauss=3 nstr= 1000 slen=128 | total_strings=  3000 | GPU=0.0165 ms | max_rel=2.1e-03 err_cnt=51 NaN=0 | FAIL
+    Sample: ref[0]=-2.969086 gpu[0]=-2.969086 | ref[1]=0.308713 gpu[1]=0.308713
+  ngauss=3 nstr= 1000 slen=256 | total_strings=  3000 | GPU=0.0284 ms | max_rel=9.9e-02 err_cnt=99 NaN=0 | FAIL
+    Sample: ref[0]=-6.513648 gpu[0]=-6.513648 | ref[1]=0.632813 gpu[1]=0.632813
+  ngauss=3 nstr= 4000 slen= 64 | total_strings= 12000 | GPU=0.0319 ms | max_rel=8.5e-03 err_cnt=130 NaN=0 | FAIL
+    Sample: ref[0]=-4.696579 gpu[0]=-4.696580 | ref[1]=-3.050846 gpu[1]=-3.050846
+  ngauss=3 nstr= 4000 slen=128 | total_strings= 12000 | GPU=0.0632 ms | max_rel=1.0e-02 err_cnt=250 NaN=0 | FAIL
+    Sample: ref[0]=-4.693605 gpu[0]=-4.693605 | ref[1]=1.493220 gpu[1]=1.493220
+  ngauss=3 nstr= 4000 slen=256 | total_strings= 12000 | GPU=0.1424 ms | max_rel=3.2e-02 err_cnt=545 NaN=0 | FAIL
+    Sample: ref[0]=-3.526496 gpu[0]=-3.526496 | ref[1]=0.775170 gpu[1]=0.775170
+  ngauss=3 nstr= 8000 slen= 64 | total_strings= 24000 | GPU=0.0626 ms | max_rel=1.7e-01 err_cnt=246 NaN=0 | FAIL
+    Sample: ref[0]=-1.662323 gpu[0]=-1.662323 | ref[1]=-1.617293 gpu[1]=-1.617293
+  ngauss=3 nstr= 8000 slen=128 | total_strings= 24000 | GPU=0.1299 ms | max_rel=1.1e-01 err_cnt=487 NaN=0 | FAIL
+    Sample: ref[0]=-7.190997 gpu[0]=-7.190997 | ref[1]=2.931173 gpu[1]=2.931173
+  ngauss=3 nstr= 8000 slen=256 | total_strings= 24000 | GPU=0.2809 ms | max_rel=5.3e-02 err_cnt=1015 NaN=0 | FAIL
+    Sample: ref[0]=-5.228385 gpu[0]=-5.228385 | ref[1]=2.832371 gpu[1]=2.832371
+  ngauss=8 nstr= 1000 slen= 64 | total_strings=  8000 | GPU=0.0311 ms | max_rel=6.6e-02 err_cnt=78 NaN=0 | FAIL
+    Sample: ref[0]=-6.568907 gpu[0]=-6.568907 | ref[1]=1.164729 gpu[1]=1.164729
+  ngauss=8 nstr= 1000 slen=128 | total_strings=  8000 | GPU=0.0382 ms | max_rel=3.3e-02 err_cnt=148 NaN=0 | FAIL
+    Sample: ref[0]=-5.331209 gpu[0]=-5.331209 | ref[1]=2.948241 gpu[1]=2.948241
+  ngauss=8 nstr= 1000 slen=256 | total_strings=  8000 | GPU=0.0724 ms | max_rel=5.8e-02 err_cnt=316 NaN=0 | FAIL
+    Sample: ref[0]=-3.112979 gpu[0]=-3.112979 | ref[1]=-1.098784 gpu[1]=-1.098784
+  ngauss=8 nstr= 4000 slen= 64 | total_strings= 32000 | GPU=0.0890 ms | max_rel=3.9e-02 err_cnt=322 NaN=0 | FAIL
+    Sample: ref[0]=-3.344046 gpu[0]=-3.344046 | ref[1]=3.044149 gpu[1]=3.044149
+  ngauss=8 nstr= 4000 slen=128 | total_strings= 32000 | GPU=0.1735 ms | max_rel=1.4e-02 err_cnt=638 NaN=0 | FAIL
+    Sample: ref[0]=-8.577066 gpu[0]=-8.577066 | ref[1]=5.428272 gpu[1]=5.428272
+  ngauss=8 nstr= 4000 slen=256 | total_strings= 32000 | GPU=0.3611 ms | max_rel=1.5e-01 err_cnt=1278 NaN=0 | FAIL
+    Sample: ref[0]=-5.243916 gpu[0]=-5.243916 | ref[1]=0.210748 gpu[1]=0.210748
+  ngauss=8 nstr= 8000 slen= 64 | total_strings= 64000 | GPU=0.1696 ms | max_rel=1.3e-01 err_cnt=645 NaN=0 | FAIL
+    Sample: ref[0]=-6.419321 gpu[0]=-6.419321 | ref[1]=5.299024 gpu[1]=5.299024
+  ngauss=8 nstr= 8000 slen=128 | total_strings= 64000 | GPU=0.3430 ms | max_rel=7.2e-02 err_cnt=1261 NaN=0 | FAIL
+    Sample: ref[0]=-3.059100 gpu[0]=-3.059100 | ref[1]=-2.577696 gpu[1]=-2.577696
+  ngauss=8 nstr= 8000 slen=256 | total_strings= 64000 | GPU=0.7198 ms | max_rel=5.4e-02 err_cnt=2513 NaN=0 | FAIL
+    Sample: ref[0]=-7.565020 gpu[0]=-7.565021 | ref[1]=1.919870 gpu[1]=1.919870
+
+================================================================
+  RESULTS: 1 / 27 tests passed
+  26 TESTS FAILED
+================================================================

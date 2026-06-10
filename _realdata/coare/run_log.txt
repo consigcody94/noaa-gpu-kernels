@@ -1,0 +1,23 @@
+================================================
+  COARE 3.6 Air-Sea Flux GPU Kernel — REAL DATA
+  Input: NOAA-PSL COARE-algorithm test_36_data.txt
+  (2165 ship obs, tropical Atlantic, ATOMIC 2020)
+================================================
+
+--- 2165 real observations ---
+  CPU: 7.0 ms | GPU: 0.028 ms | Speedup: 247.0x (timing indicative; n is small)
+  CPU-vs-GPU max rel: tau=6.48e-07  hsb=4.34e-07  hlb=1.31e-06  NaN=0
+  CPU-vs-GPU max abs: tau=1.19e-07 N/m2  hsb=1.14e-05 W/m2  hlb=3.36e-04 W/m2
+  Status: PASS
+
+  CPU reference vs OFFICIAL expected outputs (n=2165):
+    tau: bias=+0.0028  mean|err|=0.0049  max|err|=0.0242  (N/m2)
+    hsb: bias=+2.793  mean|err|=2.793  max|err|=4.543  (W/m2)
+    hlb: bias=+22.474  mean|err|=22.474  max|err|=30.876  (W/m2)
+
+  GPU kernel    vs OFFICIAL expected outputs (n=2165):
+    tau: bias=+0.0028  mean|err|=0.0049  max|err|=0.0242  (N/m2)
+    hsb: bias=+2.793  mean|err|=2.793  max|err|=4.543  (W/m2)
+    hlb: bias=+22.474  mean|err|=22.474  max|err|=30.876  (W/m2)
+
+  Indicative GPU timing on 1000230 points (real data tiled x462): 0.508 ms (1969.2 Mpts/s)

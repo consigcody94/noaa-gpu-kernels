@@ -1,0 +1,36 @@
+================================================================
+  Full Two-Stream Parallel Flux Solver Benchmark
+  3 Parallel Scans + 1 Pointwise vs Sequential Adding
+  RTX 3060 12GB | CUDA 13.3
+================================================================
+
+Problem: 1024 columns x 128 layers = 129 levels
+
+--- Sample Flux Values (Column 0) ---
+Level | Seq flux_up | Par flux_up | Seq flux_dn | Par flux_dn
+    0 |     89.4920 |     89.4920 |      0.0000 |      0.0000
+   16 |    154.6675 |    154.6675 |    160.1772 |    160.1772
+   32 |    205.4532 |    205.4531 |    225.5031 |    225.5031
+   48 |    125.5547 |    125.5547 |    115.5725 |    115.5725
+   64 |    144.4229 |    144.4229 |    158.0046 |    158.0046
+   80 |    277.2083 |    277.2083 |    285.5346 |    285.5346
+   96 |    161.2119 |    161.2119 |    197.5849 |    197.5849
+  112 |    237.5702 |    237.5702 |    133.5816 |    133.5816
+  128 |    206.4659 |    206.4659 |    226.8735 |    226.8735
+  128 |    206.4659 |    206.4659 |    226.8735 |    226.8735
+
+--- Accuracy ---
+  Flux_up: max_abs_err=8.545e-04  max_rel_err=6.263e-07  mean_abs_err=1.976e-05  errors(>1e-4)=0/132096
+  Flux_dn: max_abs_err=7.324e-04  max_rel_err=8.086e-07  mean_abs_err=2.192e-05  errors(>1e-4)=0/132096
+  NaN count: 0  Negative flux count: 0
+  Max net flux jump (energy check): 173.092 W/m2
+
+--- Performance ---
+  Sequential:     0.0517 ms
+  Parallel (3 scans): 0.0183 ms
+  Speedup:        2.82x
+
+================================================================
+  RESULT: Full flux solver speedup = 2.82x
+  (Albedo scan + Source scan + Flux scan + Pointwise)
+================================================================

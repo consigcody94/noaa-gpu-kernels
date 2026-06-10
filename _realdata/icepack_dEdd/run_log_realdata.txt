@@ -1,0 +1,28 @@
+================================================
+  Icepack delta-Eddington — REAL DATA
+  MOSAiC 2019-2020 transects + MDF shortwave
+  GPU: NVIDIA GeForce RTX 5070
+================================================
+
+Loaded 84921 real ice columns from ice_columns_real.bin
+
+--- 84921 ice columns (real, unreplicated) ---
+  CPU: 10.0 ms | GPU: 0.013 ms | Speedup: 792.4x
+  [absorbed]
+  Max abs: 1.22e-04 | Max rel: 9.48e-07 | NaN: 0 | >0.01%: 0/84921
+  Status: PASS
+
+  [transmitted]
+  Max abs: 1.07e-04 | Max rel: 8.40e-06 | NaN: 0 | >0.01%: 0/84921
+  Status: PASS
+
+--- 679368 ice columns (real x8 replication, timing only) ---
+  CPU: 77.0 ms | GPU: 0.018 ms | Speedup: 4348.0x
+  [absorbed]
+  Max abs: 1.22e-04 | Max rel: 9.48e-07 | NaN: 0 | >0.01%: 0/679368
+  Status: PASS
+
+  [transmitted]
+  Max abs: 1.07e-04 | Max rel: 8.40e-06 | NaN: 0 | >0.01%: 0/679368
+  Status: PASS
+

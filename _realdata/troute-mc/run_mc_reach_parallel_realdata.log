@@ -1,0 +1,13 @@
+================================================
+  t-route MC: Reach-Level GPU Parallelism (FP32)
+  REAL DATA: NOAA-OWP/t-route LowerColorado_TX
+  (NWM RouteLink + AnA CHRTOUT 2021-08-23 13Z)
+================================================
+
+--- 7592 reaches (10907 segments) ---
+  CPU:  3.0 ms
+  GPU:  0.208 ms (14.4x vs CPU)
+  Max abs err: 3.05e-05  Max rel err: 3.32e-06
+  NaN: 0, >1% err: 0/10907
+  Status: PASS
+

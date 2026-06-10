@@ -1,0 +1,37 @@
+{
+  "source": "NOAA NCEI IGRA2 data-y2d (2025-01-01..2026-06, accessed 2026-06-10)",
+  "url": "https://www.ncei.noaa.gov/data/integrated-global-radiosonde-archive/access/data-y2d/",
+  "stations": {
+    "GMM00010868": {
+      "soundings": 1063,
+      "accepted": 29
+    },
+    "RQM00078526": {
+      "soundings": 1044,
+      "accepted": 1035
+    },
+    "USM00070026": {
+      "soundings": 1948,
+      "accepted": 1772
+    },
+    "USM00072250": {
+      "soundings": 1051,
+      "accepted": 1039
+    },
+    "USM00072403": {
+      "soundings": 1046,
+      "accepted": 1040
+    }
+  },
+  "ncol": 19660,
+  "nlev": 64,
+  "dt_s": 600.0,
+  "sigma_top": 0.2,
+  "fields": [
+    "T",
+    "q",
+    "u",
+    "v"
+  ],
+  "K_scheme": "bulk-Ri local closure: Louis-79 fm, Blackadar l (lambda=150m), Kim-Mahrt stable Pr; K in [0.01,1000] m2/s"
+}

@@ -167,7 +167,7 @@ __global__ void kernel_map1_ppm(const float* __restrict__ q,
 int main() {
     printf("================================================\n");
     printf("  FV3 Vertical Remapping (map1_ppm) GPU Kernel\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     int km_vals[] = {64, 91, 127};

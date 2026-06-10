@@ -1,0 +1,7 @@
+=============================================================
+CICE EVP GPU Benchmark -- OPTIMIZED (Fused + Persistent)
+Domain: DMI operational, 631,387 active cells
+Subcycles (ndte): 120
+=============================================================
+
+Reading input data...

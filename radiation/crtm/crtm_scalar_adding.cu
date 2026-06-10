@@ -129,7 +129,7 @@ int main() {
     printf("================================================================\n");
     printf("  CRTM Clear-Sky Adding: Parallel Prefix Scan Benchmark\n");
     printf("  ADA_Module.f90 non-scattering path (lines 228-246)\n");
-    printf("  RTX 3060 12GB | CUDA %d.%d\n", CUDART_VERSION/1000, (CUDART_VERSION%1000)/10);
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s | CUDA %d.%d\n", dp_.name, CUDART_VERSION/1000, (CUDART_VERSION%1000)/10); }
     printf("================================================================\n\n");
 
     // Test configs matching real CRTM usage

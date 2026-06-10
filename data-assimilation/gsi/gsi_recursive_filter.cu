@@ -181,7 +181,7 @@ int main() {
     printf("================================================================\n");
     printf("  GSI Recursive Filter: Parallel Prefix Scan Benchmark\n");
     printf("  one_color4 from raflib.f90 — IIR forward-backward filter\n");
-    printf("  RTX 3060 12GB | CUDA %d.%d\n", CUDART_VERSION/1000, (CUDART_VERSION%1000)/10);
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s | CUDA %d.%d\n", dp_.name, CUDART_VERSION/1000, (CUDART_VERSION%1000)/10); }
     printf("================================================================\n\n");
 
     // Realistic GSI parameters

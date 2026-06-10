@@ -1,0 +1,21 @@
+================================================
+  UPP CAPE/CIN GPU Kernel — REAL IGRA2 DATA
+  Input: cape_input.bin
+================================================
+
+Loaded 4045 real radiosonde soundings (IGRA2, NOAA NCEI)
+
+--- 10000 columns (real soundings cycled x2.5) ---
+  CPU: 32.0 ms | GPU: 0.074 ms | Speedup: 431.4x
+  Max rel: CAPE=1.56e-03  CIN=1.35e-04  NaN=0  Match(<1 J/kg)=10000/10000
+  Max abs: CAPE=0.391 J/kg  CIN=0.136 J/kg
+  Status: PASS
+
+  Wrote per-sounding results: cape_results.csv (4045 rows)
+
+--- 100000 columns (real soundings cycled x24.7) ---
+  CPU: 320.0 ms | GPU: 0.788 ms | Speedup: 406.3x
+  Max rel: CAPE=1.56e-03  CIN=1.35e-04  NaN=0  Match(<1 J/kg)=100000/100000
+  Max abs: CAPE=0.391 J/kg  CIN=0.136 J/kg
+  Status: PASS
+

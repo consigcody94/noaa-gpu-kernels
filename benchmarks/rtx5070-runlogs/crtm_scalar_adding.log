@@ -1,0 +1,23 @@
+================================================================
+  CRTM Clear-Sky Adding: Parallel Prefix Scan Benchmark
+  ADA_Module.f90 non-scattering path (lines 228-246)
+  RTX 3060 12GB | CUDA 13.3
+================================================================
+
+--- IR sounder (10K profiles, 60 layers, 6 angles) ---
+  GPU time: 0.0771 ms | max_rel=4.1e-07 max_abs=6.1e-05 NaN=0 | PASS
+--- IR sounder (50K profiles, 60 layers, 6 angles) ---
+  GPU time: 0.3399 ms | max_rel=4.3e-07 max_abs=6.1e-05 NaN=0 | PASS
+--- High-res (10K profiles, 100 layers, 6 angles) ---
+  GPU time: 0.1322 ms | max_rel=4.3e-07 max_abs=6.1e-05 NaN=0 | PASS
+--- MW sounder (100K profiles, 60 layers, 2 angles) ---
+  GPU time: 0.2313 ms | max_rel=3.5e-07 max_abs=6.1e-05 NaN=0 | PASS
+--- Multi-stream (10K profiles, 60 layers, 16 angles) ---
+  GPU time: 0.1864 ms | max_rel=4.4e-07 max_abs=6.1e-05 NaN=0 | PASS
+--- Deep atmosphere (1K profiles, 200 layers, 6 angles) ---
+  GPU time: 0.0256 ms | max_rel=3.1e-07 max_abs=4.6e-05 NaN=0 | PASS
+
+================================================================
+  RESULTS: 6 / 6 tests passed
+  ALL TESTS PASSED
+================================================================

@@ -1,0 +1,57 @@
+================================================
+  NOAA-OWP Extended GPU Kernels
+  Diffusive Wave + TOPMODEL + PET
+  RTX 3060 12GB
+================================================
+
+========== DIFFUSIVE WAVE TRIDIAG ==========
+
+--- Diffusive Wave Tridiag: 1000 reaches ---
+  CPU: 1.0 ms | GPU: 0.037 ms | Speedup: 27.3x
+  Max abs: 5.72e-06 | Max rel: 2.04e-07 | NaN: 0 | >0.01% err: 0/59472
+  Status: PASS
+
+--- Diffusive Wave Tridiag: 5000 reaches ---
+  CPU: 4.0 ms | GPU: 0.041 ms | Speedup: 96.7x
+  Max abs: 7.63e-06 | Max rel: 2.30e-07 | NaN: 0 | >0.01% err: 0/300669
+  Status: PASS
+
+--- Diffusive Wave Tridiag: 10000 reaches ---
+  CPU: 10.0 ms | GPU: 0.063 ms | Speedup: 158.4x
+  Max abs: 7.63e-06 | Max rel: 2.48e-07 | NaN: 0 | >0.01% err: 0/600616
+  Status: PASS
+
+========== TOPMODEL ==========
+
+--- TOPMODEL: 100000 catchments ---
+  CPU: 7.0 ms | GPU: 0.029 ms | Speedup: 240.8x
+  Max rel (baseflow): 4.76e-07 | NaN: 0
+  Status: PASS
+
+--- TOPMODEL: 1000000 catchments ---
+  CPU: 84.0 ms | GPU: 0.339 ms | Speedup: 247.7x
+  Max rel (baseflow): 5.30e-07 | NaN: 0
+  Status: PASS
+
+--- TOPMODEL: 2700000 catchments ---
+  CPU: 202.0 ms | GPU: 0.732 ms | Speedup: 276.1x
+  Max rel (baseflow): 5.87e-07 | NaN: 0
+  Status: PASS
+
+========== PENMAN-MONTEITH PET ==========
+
+--- Penman-Monteith PET: 100000 catchments ---
+  CPU: 2.0 ms | GPU: 0.011 ms | Speedup: 182.4x
+  Max rel: 5.16e-06 | NaN: 0
+  Status: PASS
+
+--- Penman-Monteith PET: 1000000 catchments ---
+  CPU: 17.0 ms | GPU: 0.018 ms | Speedup: 953.8x
+  Max rel: 5.00e-05 | NaN: 0
+  Status: PASS
+
+--- Penman-Monteith PET: 2700000 catchments ---
+  CPU: 44.0 ms | GPU: 0.129 ms | Speedup: 340.1x
+  Max rel: 1.44e-04 | NaN: 0
+  Status: PASS (fast exp)
+

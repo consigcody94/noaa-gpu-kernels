@@ -1,0 +1,33 @@
+================================================
+  t-route MC: Reach-Level GPU Parallelism
+  (Exact accuracy, no operator splitting)
+================================================
+
+--- 1K reaches (10632 segments) ---
+  CPU:  9.0 ms
+  GPU:  0.547 ms (16.5x vs CPU)
+  Max abs err: 6.78e+00  Max rel err: 6.84e+00
+  NaN: 0, >1% err: 11/10632
+  Status: FAIL
+
+--- 10K reaches (105092 segments) ---
+  CPU:  90.0 ms
+  GPU:  1.005 ms (89.5x vs CPU)
+  Max abs err: 1.35e+01  Max rel err: 1.91e+01
+  NaN: 0, >1% err: 88/105092
+  Status: FAIL
+
+--- 50K reaches (525636 segments) ---
+  CPU:  449.0 ms
+  GPU:  1.665 ms (269.7x vs CPU)
+  Max abs err: 7.47e+01  Max rel err: 1.30e+01
+  NaN: 0, >1% err: 415/525636
+  Status: FAIL
+
+--- 100K reaches (1051355 segments) ---
+  CPU:  905.0 ms
+  GPU:  2.686 ms (337.0x vs CPU)
+  Max abs err: 6.16e+01  Max rel err: 4.05e+02
+  NaN: 0, >1% err: 872/1051355
+  Status: FAIL
+

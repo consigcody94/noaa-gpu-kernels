@@ -91,6 +91,19 @@ curl -L -o input_logical_1d.bin "https://zenodo.org/api/records/11248366/files/i
 ./evp_dmi_optimized 1000   # 1000 subcycles
 ```
 
+## Blackwell (RTX 5070 / sm_120) note — 2026-06
+
+Re-validated on RTX 5070 (driver 610.47, CUDA 13.3) with the same Zenodo inputs
+(MD5-verified against the live record): baseline PASSes its <1e-6 criterion at
+ndte=1 (5.3e-09) and ndte=5 (2.4e-07), with the documented iterative FP divergence
+at ndte>=120. GPU times ~2.5x faster than the RTX 3060 table above (132 vs 336 ms
+at ndte=120).
+
+**Caveat:** the persistent cooperative-groups fused kernel in `evp_dmi_optimized.cu`
+*regresses* about 1.1% vs separate kernel launches on sm_120 (it gained +3.7-5.2% on
+sm_86) — grid-wide sync costs more than the launch overhead it saves on Blackwell.
+Prefer the baseline binary on sm_120.
+
 ## Attribution
 
 Author: Cody Churchwell, April 2026

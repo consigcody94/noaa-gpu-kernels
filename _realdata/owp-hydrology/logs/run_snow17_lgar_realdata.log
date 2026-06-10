@@ -1,0 +1,53 @@
+================================================
+  NOAA-OWP Snow17 + LGAR GPU Kernels — REAL DATA
+  HHWM8 (Flathead R.) + LASAM (Phillipsburg/Bushland)
+  RTX 5070 12GB (sm_120)
+================================================
+
+[data] Snow17 library: 33602 real (state,forcing) tuples (2 HRUs x 16801 days, HHWM8 1970-2015)
+[data] LGAR library: 17520 real (state,forcing) tuples (2 sites x 8760 h, Phillipsburg WY2017 + Bushland WY2021)
+
+========== SNOW17 ==========
+
+--- Snow17 (REAL HHWM8 data): 33602 catchments ---
+  CPU: 1.0 ms | GPU: 0.219 ms | Speedup: 4.6x
+  Max abs: 7.63e-06 | Max rel: 5.52e-06 | NaN: 0 | >0.01% err: 0/33602
+  Status: PASS
+
+--- Snow17 (REAL HHWM8 data): 100000 catchments ---
+  CPU: 2.0 ms | GPU: 0.306 ms | Speedup: 6.5x
+  Max abs: 7.63e-06 | Max rel: 5.52e-06 | NaN: 0 | >0.01% err: 0/100000
+  Status: PASS
+
+--- Snow17 (REAL HHWM8 data): 1000000 catchments ---
+  CPU: 19.0 ms | GPU: 3.117 ms | Speedup: 6.1x
+  Max abs: 7.63e-06 | Max rel: 5.52e-06 | NaN: 0 | >0.01% err: 0/1000000
+  Status: PASS
+
+--- Snow17 (REAL HHWM8 data): 2700000 catchments ---
+  CPU: 50.0 ms | GPU: 8.468 ms | Speedup: 5.9x
+  Max abs: 7.63e-06 | Max rel: 5.52e-06 | NaN: 0 | >0.01% err: 0/2700000
+  Status: PASS
+
+========== LGAR INFILTRATION ==========
+
+--- LGAR Infiltration (REAL LASAM data): 17520 catchments ---
+  CPU: 0.0 ms | GPU: 0.106 ms | Speedup: 0.0x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0
+  Status: PASS
+
+--- LGAR Infiltration (REAL LASAM data): 100000 catchments ---
+  CPU: 2.0 ms | GPU: 0.115 ms | Speedup: 17.4x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0
+  Status: PASS
+
+--- LGAR Infiltration (REAL LASAM data): 1000000 catchments ---
+  CPU: 14.0 ms | GPU: 0.444 ms | Speedup: 31.5x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0
+  Status: PASS
+
+--- LGAR Infiltration (REAL LASAM data): 2700000 catchments ---
+  CPU: 40.0 ms | GPU: 1.382 ms | Speedup: 28.9x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0
+  Status: PASS
+

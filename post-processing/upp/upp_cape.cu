@@ -194,20 +194,19 @@ void gen_columns(Column* cols, int n, unsigned seed) {
         float Q_sfc = 0.008f + 0.012f * ((float)rand()/RAND_MAX);
         float lapse = 0.0065f + 0.002f * ((float)rand()/RAND_MAX);
 
+        // UPP orientation: index nlev-1 = surface, index 0 = column top
+        // (the kernel reads pmid[nlev-1] as surface pressure and lifts
+        // toward index 0; zint must decrease with index so that
+        // dz = zint[l] - zint[l+1] > 0).
         for (int l = 0; l < cols[c].nlev; l++) {
-            float frac = (float)l / (float)(cols[c].nlev - 1);
+            float frac = (float)(cols[c].nlev - 1 - l) / (float)(cols[c].nlev - 1);
             cols[c].pmid[l] = P_sfc * (1.0f - 0.9f * frac); // ~10000 Pa at top
             cols[c].T[l] = T_sfc - lapse * frac * 15000.0f;
             if (cols[c].T[l] < 200.0f) cols[c].T[l] = 200.0f;
             cols[c].Q[l] = Q_sfc * expf(-5.0f * frac);
-            cols[c].zint[l] = frac * 15000.0f;
         }
-        cols[c].zint[cols[c].nlev] = 0.0f;
-        // Reverse zint (surface at bottom)
-        for (int l = 0; l <= cols[c].nlev / 2; l++) {
-            float tmp = cols[c].zint[l];
-            cols[c].zint[l] = cols[c].zint[cols[c].nlev - l];
-            cols[c].zint[cols[c].nlev - l] = tmp;
+        for (int l = 0; l <= cols[c].nlev; l++) {
+            cols[c].zint[l] = (float)(cols[c].nlev - l) / (float)cols[c].nlev * 15000.0f;
         }
     }
 }
@@ -215,7 +214,7 @@ void gen_columns(Column* cols, int n, unsigned seed) {
 int main() {
     printf("================================================\n");
     printf("  UPP CAPE/CIN GPU Kernel\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     int sizes[] = {10000, 100000, 500000};

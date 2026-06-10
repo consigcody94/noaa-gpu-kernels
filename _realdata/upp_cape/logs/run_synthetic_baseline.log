@@ -1,0 +1,20 @@
+================================================
+  UPP CAPE/CIN GPU Kernel
+  RTX 3060 12GB
+================================================
+
+--- 10000 columns ---
+  CPU: 40.0 ms | GPU: 0.108 ms | Speedup: 370.6x
+  Max rel: CAPE=5.04e-06  CIN=0.00e+00  NaN=0  Match(<1 J/kg)=10000/10000
+  Status: PASS
+
+--- 100000 columns ---
+  CPU: 413.0 ms | GPU: 1.123 ms | Speedup: 367.8x
+  Max rel: CAPE=5.81e-06  CIN=0.00e+00  NaN=0  Match(<1 J/kg)=100000/100000
+  Status: PASS
+
+--- 500000 columns ---
+  CPU: 1963.0 ms | GPU: 5.345 ms | Speedup: 367.2x
+  Max rel: CAPE=6.10e-06  CIN=0.00e+00  NaN=0  Match(<1 J/kg)=500000/500000
+  Status: PASS
+

@@ -1,0 +1,20 @@
+=============================================================
+  WW3 DIA (Discrete Interaction Approximation) GPU Benchmark
+  NTH=36, NK=32, NSPEC=1152, NGRID=10000
+=============================================================
+
+--- Sequential (1 thread/grid point) ---
+  Time: 1.1136 ms
+
+--- Parallel (1 thread/spectral bin/grid point) ---
+  Time: 0.2797 ms
+  Speedup: 4.0x
+  Max relative error: 0.000e+00
+
+=============================================================
+  SUMMARY: 10000 grid points x 1152 spectral bins
+  Sequential: 1.1136 ms
+  Parallel:   0.2797 ms
+  Speedup:    4.0x
+  Throughput: 41181.7 million DIA evals/sec
+=============================================================

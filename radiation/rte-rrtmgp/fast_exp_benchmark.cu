@@ -328,7 +328,7 @@ float benchmark_kernel_sp(void (*kernel)(const float*, float, float*, int),
 int main() {
     printf("=============================================================\n");
     printf("  GPU Benchmark: Radiative Transfer exp() Optimization\n");
-    printf("  RTX 3060 12GB | CUDA %d.%d\n", CUDART_VERSION / 1000, (CUDART_VERSION % 1000) / 10);
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s | CUDA %d.%d\n", dp_.name, CUDART_VERSION/1000, (CUDART_VERSION%1000)/10); }
     printf("=============================================================\n\n");
 
     int N = NCOL * NLAY * NGPT;

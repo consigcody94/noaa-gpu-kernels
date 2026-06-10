@@ -1,0 +1,61 @@
+================================================
+  NOAA-OWP Batched GPU Kernels
+  CFE Nash Cascade + NOAH-MP Tridiag Solver
+  RTX 3060 12GB
+================================================
+
+========== CFE NASH CASCADE ==========
+
+--- Nash Cascade: 10000 catchments ---
+  CPU: 0.0 ms | GPU: 0.190 ms | Speedup: 0.0x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/10000
+  Status: PASS
+
+--- Nash Cascade: 100000 catchments ---
+  CPU: 2.0 ms | GPU: 0.452 ms | Speedup: 4.4x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/100000
+  Status: PASS
+
+--- Nash Cascade: 1000000 catchments ---
+  CPU: 13.0 ms | GPU: 5.639 ms | Speedup: 2.3x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/1000000
+  Status: PASS
+
+--- Nash Cascade: 2700000 catchments ---
+  CPU: 37.0 ms | GPU: 17.676 ms | Speedup: 2.1x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0 | >1e-5 err: 0/2700000
+  Status: PASS
+
+========== NOAH-MP TRIDIAG SOLVER ==========
+
+--- NOAH-MP Tridiag Solver: 10000 columns ---
+  CPU: 1.0 ms | GPU: 0.013 ms | Speedup: 79.4x
+  Max abs: 2.38e-07 | Max rel: 6.55e-04 | Max residual: 2.98e-07
+  NaN: 0 | >0.01% err: 1/100000
+  Status: PASS (FP32 rounding)
+
+--- NOAH-MP Tridiag Solver: 100000 columns ---
+  CPU: 5.0 ms | GPU: 0.039 ms | Speedup: 127.3x
+  Max abs: 3.58e-07 | Max rel: 3.79e-03 | Max residual: 2.98e-07
+  NaN: 0 | >0.01% err: 38/1000000
+  Status: FAIL
+
+--- NOAH-MP Tridiag Solver: 1000000 columns ---
+  CPU: 56.0 ms | GPU: 0.496 ms | Speedup: 112.9x
+  Max abs: 3.58e-07 | Max rel: 7.38e-01 | Max residual: 3.58e-07
+  NaN: 0 | >0.01% err: 374/10000000
+  Status: FAIL
+
+--- NOAH-MP Tridiag Solver: 2700000 columns ---
+  CPU: 136.0 ms | GPU: 1.348 ms | Speedup: 100.9x
+  Max abs: 3.58e-07 | Max rel: 7.38e-01 | Max residual: 3.58e-07
+  NaN: 0 | >0.01% err: 1062/27000000
+  Status: FAIL
+
+================================================
+  Notes:
+  - Both kernels run identical algorithms to CPU
+  - Speedup comes from batching millions of
+    independent catchments/columns on GPU
+  - No algorithmic changes, no approximations
+================================================

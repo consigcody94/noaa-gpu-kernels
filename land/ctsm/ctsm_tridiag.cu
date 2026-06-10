@@ -83,7 +83,7 @@ void gen(float* a, float* b, float* c, float* r, int* nl, int ncol, unsigned see
 int main() {
     printf("================================================\n");
     printf("  CTSM Tridiagonal Solver GPU Kernel\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     int sizes[] = {100000, 500000, 1000000, 2000000};

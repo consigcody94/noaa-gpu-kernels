@@ -1,0 +1,39 @@
+================================================
+  NOAA-OWP Snow17 + LGAR GPU Kernels
+  RTX 3060 12GB
+================================================
+
+========== SNOW17 ==========
+
+--- Snow17: 100000 catchments ---
+  CPU: 2.0 ms | GPU: 0.334 ms | Speedup: 6.0x
+  Max abs: 3.81e-06 | Max rel: 1.45e-06 | NaN: 0 | >0.01% err: 0/100000
+  Status: PASS
+
+--- Snow17: 1000000 catchments ---
+  CPU: 22.0 ms | GPU: 4.256 ms | Speedup: 5.2x
+  Max abs: 7.63e-06 | Max rel: 1.70e-05 | NaN: 0 | >0.01% err: 0/1000000
+  Status: PASS
+
+--- Snow17: 2700000 catchments ---
+  CPU: 56.0 ms | GPU: 11.415 ms | Speedup: 4.9x
+  Max abs: 7.63e-06 | Max rel: 2.10e-05 | NaN: 0 | >0.01% err: 0/2700000
+  Status: PASS
+
+========== LGAR INFILTRATION ==========
+
+--- LGAR Infiltration: 100000 catchments ---
+  CPU: 2.0 ms | GPU: 0.126 ms | Speedup: 15.8x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0
+  Status: PASS
+
+--- LGAR Infiltration: 1000000 catchments ---
+  CPU: 17.0 ms | GPU: 0.698 ms | Speedup: 24.3x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0
+  Status: PASS
+
+--- LGAR Infiltration: 2700000 catchments ---
+  CPU: 42.0 ms | GPU: 1.840 ms | Speedup: 22.8x
+  Max abs: 0.00e+00 | Max rel: 0.00e+00 | NaN: 0
+  Status: PASS
+

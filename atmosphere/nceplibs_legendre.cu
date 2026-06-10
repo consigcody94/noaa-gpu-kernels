@@ -196,7 +196,7 @@ void gen_data(float* slats, float* clats, float* eps, float* spc,
 int main() {
     printf("================================================\n");
     printf("  NCEPLIBS-sp Legendre + Synthesis GPU Kernel\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     // Test with moderate truncation (T126 ~ GFS at reduced resolution)

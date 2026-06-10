@@ -237,7 +237,7 @@ void gen_coare(COAREInput* in, int n, unsigned seed) {
 int main() {
     printf("================================================\n");
     printf("  COARE 3.6 Air-Sea Flux GPU Kernel\n");
-    printf("  RTX 3060 12GB\n");
+    { cudaDeviceProp dp_; cudaGetDeviceProperties(&dp_, 0); printf("  %s %.0fGB\n", dp_.name, dp_.totalGlobalMem/1073741824.0); }
     printf("================================================\n\n");
 
     int sizes[] = {10000, 100000, 500000, 1000000};

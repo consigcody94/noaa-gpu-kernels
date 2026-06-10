@@ -1,0 +1,40 @@
+================================================
+  MOM6 GPU Kernels
+  Vertical Mixing + Equation of State
+  RTX 3060 12GB
+================================================
+
+========== MOM6 triDiagTS (vertical mixing) ==========
+
+--- 10000 ocean columns ---
+  CPU: 7.0 ms | GPU: 2.999 ms | Speedup: 2.3x
+  Max rel: T=4.14e-02  S=3.79e-02  NaN=0
+  Status: NEEDS REVIEW
+
+--- 100000 ocean columns ---
+  CPU: 74.0 ms | GPU: 24.235 ms | Speedup: 3.1x
+  Max rel: T=4.35e-02  S=3.80e-02  NaN=0
+  Status: NEEDS REVIEW
+
+--- 500000 ocean columns ---
+  CPU: 383.0 ms | GPU: 135.511 ms | Speedup: 2.8x
+  Max rel: T=4.38e-02  S=3.80e-02  NaN=0
+  Status: NEEDS REVIEW
+
+========== MOM6 Equation of State ==========
+
+--- 1000000 points ---
+  CPU: 2.0 ms | GPU: 0.014 ms | Speedup: 147.7x
+  Max rel: 2.38e-07  NaN=0
+  Status: PASS
+
+--- 5000000 points ---
+  CPU: 8.0 ms | GPU: 0.081 ms | Speedup: 98.8x
+  Max rel: 2.38e-07  NaN=0
+  Status: PASS
+
+--- 10000000 points ---
+  CPU: 17.0 ms | GPU: 0.228 ms | Speedup: 74.7x
+  Max rel: 2.38e-07  NaN=0
+  Status: PASS
+

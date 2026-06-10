@@ -1,0 +1,12 @@
+=============================================================
+CICE EVP GPU Benchmark -- Real DMI Arctic Data
+Domain: DMI operational, 1 March 2020 (winter)
+Active T-cells (na): 631387, U-cells (nb): 608124, navel: 660613
+Subcycles (ndte): 120
+=============================================================
+
+EVP parameters: arlx1i=1.157407e-02, denom1=0.9885583524, brlx=120.0
+  e_factor=2.500000e-01, epp2i=0.250000
+
+Expected file size: 192.4 MB (24051161 doubles)
+Reading input data...

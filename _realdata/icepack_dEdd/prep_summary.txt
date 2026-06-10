@@ -1,0 +1,161 @@
+Icepack dEdd real-data prep summary (access date 2026-06-10)
+stats: {'rows': 92279, 'bad_parse': 298, 'bad_state': 5862, 'outlier': 0, 'no_sw': 1198, 'kept': 84921}
+
+per-file (file, thickness channel, kept):
+  20191024-PS122-1_4-1\magna+gem2-transect-20191024_PS122-1_4-1_Nloop.csv | ice thickness 18khz ip (m) | 636
+  20191031-PS122-1_5-27\magna+gem2-transect-20191031_PS122-1_5-27_Nloop.csv | ice thickness 18khz ip (m) | 756
+  20191031-PS122-1_5-27\magna+gem2-transect-20191031_PS122-1_5-27_Sloop.csv | ice thickness 18khz ip (m) | 802
+  20191107-PS122-1_6-50\magna+gem2-transect-20191107_PS122-1_6-50_Nloop.csv | ice thickness 18khz ip (m) | 510
+  20191107-PS122-1_6-50\magna+gem2-transect-20191107_PS122-1_6-50_Sloop.csv | ice thickness 18khz ip (m) | 522
+  20191114-PS122-1_7-62\magna+gem2-transect-20191114_PS122-1_7-62_Nloop.csv | ice thickness 18khz ip (m) | 561
+  20191114-PS122-1_7-62\magna+gem2-transect-20191114_PS122-1_7-62_Sloop.csv | ice thickness 18khz ip (m) | 564
+  20191121-PS122-1_8-58\magna+gem2-transect-20191121_PS122-1_8-58_Nloop.csv | ice thickness 18khz ip (m) | 495
+  20191128-PS122-1_9-54\magna+gem2-transect-20191128_PS122-1_9-54_Nloop.csv | ice thickness 18khz ip (m) | 479
+  20191205-PS122-1_10-59\magna+gem2-transect-20191205_PS122-1_10-59_Nloop.csv | ice thickness 18khz ip (m) | 594
+  20191205-PS122-1_10-59\magna+gem2-transect-20191205_PS122-1_10-59_Sloop.csv | ice thickness 18khz ip (m) | 820
+  20191219-PS122-2_16-83\magna+gem2-transect-20191219_PS122-2_16-83_Nloop.csv | ice thickness 18khz ip (m) | 660
+  20191219-PS122-2_16-83\magna+gem2-transect-20191219_PS122-2_16-83_Nloop_ice_from_20191226.csv | ice thickness 18khz ip (m) | 255
+  20191219-PS122-2_16-83\magna+gem2-transect-20191226_PS122-2_16-83_Nloop.csv | ice thickness 18khz ip (m) | 660
+  20191222-PS122-2_16-84\magna+gem2-transect-20191222_PS122-2_16-84_snow1.csv | ice thickness 18khz ip (m) | 273
+  20191226-PS122-2_17-113\magna+gem2-transect-20191226_PS122-2_17-113_Sloop.csv | ice thickness 18khz ip (m) | 1105
+  20200102-PS122-2_18-80\magna+gem2-transect-20200102_PS122-2_18-80_Nloop.csv | ice thickness 18khz ip (m) | 737
+  20200102-PS122-2_18-80\magna+gem2-transect-20200102_PS122-2_18-80_Sloop.csv | ice thickness 18khz ip (m) | 849
+  20200107-PS122-2_19-103\magna+gem2-transect-20200107_PS122-2_19-103_special.csv | ice thickness 18khz ip (m) | 307
+  20200108-PS122-2_19-107\magna+gem2-transect-20200108_PS122-2_19-107_ridgeFR1.csv | ice thickness f18325hz_hcp_i (m) | 55
+  20200109-PS122-2_19-110\magna+gem2-transect-20200109_PS122-2_19-110_Nloop.csv | ice thickness 18khz ip (m) | 1012
+  20200109-PS122-2_19-110\magna+gem2-transect-20200109_PS122-2_19-110_Sloop.csv | ice thickness 18khz ip (m) | 1142
+  20200110-PS122-2_19-113\magna+gem2-transect-20200110_PS122-2_19-113_ridgeFR2.csv | ice thickness f18325hz_hcp_i (m) | 72
+  20200112-PS122-2_19-139\magna+gem2-transect-20200112_PS122-2_19-139_runway.csv | ice thickness 18khz ip (m) | 719
+  20200112-PS122-2_19-139\magna+gem2-transect-20200112_PS122-2_19-139_snow1.csv | ice thickness 18khz ip (m) | 277
+  20200115-PS122-2_20-43\magna+gem2-transect-20200115_PS122-2_20-43_special.csv | ice thickness 18khz ip (m) | 264
+  20200116-PS122-2_20-95\magna+gem2-transect-20200116_PS122-2_20-95_Nloop.csv | ice thickness 18khz ip (m) | 1085
+  20200116-PS122-2_20-95\magna+gem2-transect-20200116_PS122-2_20-95_Sloop.csv | ice thickness 18khz ip (m) | 1274
+  20200117-PS122-2_20-98\magna+gem2-transect-20200117_PS122-2_20-98_ridgeA1.csv | ice thickness f18325hz_hcp_i (m) | 45
+  20200119-PS122-2_20-124\magna+gem2-transect-20200119_PS122-2_20-124_ridgeFR1.csv | ice thickness f18325hz_hcp_i (m) | 60
+  20200119-PS122-2_20-124\magna+gem2-transect-20200119_PS122-2_20-124_runway.csv | ice thickness 18khz ip (m) | 666
+  20200123-PS122-2_21-140\magna+gem2-transect-20200123_PS122-2_21-140_special.csv | ice thickness 18khz ip (m) | 1128
+  20200126-PS122-2_21-142\magna+gem2-transect-20200126_PS122-2_21-142_snow1.csv | ice thickness 18khz ip (m) | 363
+  20200126-PS122-2_21-142\magna+gem2-transect-20200126_PS122-2_21-142_special.csv | ice thickness 18khz ip (m) | 541
+  20200130-PS122-2_22-92\magna+gem2-transect-20200130_PS122-2_22-92_Nloop.csv | ice thickness 18khz ip (m) | 1138
+  20200130-PS122-2_22-92\magna+gem2-transect-20200130_PS122-2_22-92_Sloop.csv | ice thickness 18khz ip (m) | 1395
+  20200131-PS122-2_22-94\magna+gem2-transect-20200131_PS122-2_22-94_ridgeA1.csv | ice thickness f18325hz_hcp_i (m) | 29
+  20200131-PS122-2_22-94\magna+gem2-transect-20200131_PS122-2_22-94_ridgeFR3.csv | ice thickness f18325hz_hcp_i (m) | 52
+  20200206-PS122-2_23-62\magna+gem2-transect-20200206_PS122-2_23-62_Nloop.csv | ice thickness 18khz q (m) | 1211
+  20200206-PS122-2_23-62\magna+gem2-transect-20200206_PS122-2_23-62_Sloop.csv | ice thickness 18khz ip (m) | 1426
+  20200207-PS122-2_23-90\magna+gem2-transect-20200207_PS122-2_23-90_runway.csv | ice thickness 18khz ip (m) | 790
+  20200207-PS122-2_23-90\magna+gem2-transect-20200207_PS122-2_23-90_snow1.csv | ice thickness 18khz ip (m) | 458
+  20200212PS122-2_24-69\magna+gem2-transect-20200212_PS122-2_24-69_ridgeA2.csv | ice thickness f18325hz_hcp_i (m) | 60
+  20200212PS122-2_24-69\magna+gem2-transect-20200212_PS122-2_24-69_ridgeA3.csv | ice thickness f18325hz_hcp_i (m) | 62
+  20200212PS122-2_24-69\magna+gem2-transect-20200212_PS122-2_24-69_ridgeFR2.csv | ice thickness f18325hz_hcp_i (m) | 69
+  20200220PS122-2_25-119\magna+gem2-transect-20200220_PS122-2_25-119_Nloop.csv | ice thickness 18khz ip (m) | 1227
+  20200220PS122-2_25-119\magna+gem2-transect-20200220_PS122-2_25-119_Sloop.csv | ice thickness 18khz ip (m) | 1375
+  20200221PS122-2_25-122\magna+gem2-transect-20200221_PS122-2_25-122_ridgeFR1.csv | ice thickness f18325hz_hcp_i (m) | 57
+  20200221PS122-2_25-122\magna+gem2-transect-20200221_PS122-2_25-122_ridgeFR2.csv | ice thickness f18325hz_hcp_i (m) | 71
+  20200223PS122-2_25-124\magna+gem2-transect-20200223_PS122-2_25-124_snow1_coords_from_20200207.csv | ice thickness 18khz ip (m) | 0
+  20200226-PS122-3_29-67\magna+gem2-transect-20200226_PS122-3_29-67_special.csv | ice thickness 18khz ip (m) | 125
+  20200227-PS122-3_29-70\magna+gem2-transect-20200227_PS122-3_29-70_Nloop.csv | ice thickness 18khz ip (m) | 1093
+  20200227-PS122-3_29-70\magna+gem2-transect-20200227_PS122-3_29-70_Sloop.csv | ice thickness 18khz ip (m) | 1376
+  20200228-PS122-3_29-73\magna+gem2-transect-20200228_PS122-3_29-73_ridgeA1.csv | ice thickness f18325hz_hcp_i (m) | 30
+  20200228-PS122-3_29-73\magna+gem2-transect-20200228_PS122-3_29-73_ridgeA2.csv | ice thickness f18325hz_hcp_i (m) | 53
+  20200228-PS122-3_29-73\magna+gem2-transect-20200228_PS122-3_29-73_ridgeA3.csv | ice thickness f18325hz_hcp_i (m) | 56
+  20200305-PS122-3_30-84\magna+gem2-transect-20200305_PS122-3_30-84_ridgeFR1.csv | ice thickness 18khz ip (m) | 64
+  20200305-PS122-3_30-88\magna+gem2-transect-20200305_PS122-3_30-88_Nloop.csv | ice thickness 18khz ip (m) | 504
+  20200305-PS122-3_30-89\magna+gem2-transect-20200305_PS122-3_30-89_Sloop.csv | ice thickness 18khz ip (m) | 943
+  20200320-PS122-3_32-95\magna+gem2-transect-20200320_PS122-3_32-95_Nloop.csv | ice thickness 18khz ip (m) | 1054
+  20200326-PS122-3_33-91\magna+gem2-transect-20200326_PS122-3_33-91_Nloop.csv | ice thickness 18khz ip (m) | 933
+  20200326-PS122-3_33-92\magna+gem2-transect-20200326_PS122-3_33-92_special.csv | ice thickness 18khz ip (m) | 214
+  20200330-PS122-3_34-15\magna+gem2-transect-20200330_PS122-3_34-15_Sloop.csv | ice thickness 18khz ip (m) | 981
+  20200403-PS122-3_34-88\magna+gem2-transect-20200403_PS122-3_34-88_Nloop.csv | ice thickness 18khz ip (m) | 863
+  20200406-PS122-3_35-20\magna+gem2-transect-20200406_PS122-3_35-20_Sloop.csv | ice thickness 18khz q (m) | 871
+  20200406-PS122-3_35-21\magna+gem2-transect-20200406_PS122-3_35-21_snow1.csv | ice thickness 18khz q (m) | 183
+  20200410-PS122-3_35-112\magna+gem2-transect-20200410_PS122-3_35-112_ridgeA1.csv | ice thickness 18khz ip (m) | 48
+  20200410-PS122-3_35-112\magna+gem2-transect-20200410_PS122-3_35-112_ridgeA2.csv | ice thickness 18khz ip (m) | 48
+  20200410-PS122-3_35-112\magna+gem2-transect-20200410_PS122-3_35-112_ridgeA3.csv | ice thickness 18khz ip (m) | 48
+  20200410-PS122-3_35-114\magna+gem2-transect-20200410_PS122-3_35-114_ridgeD.csv | ice thickness 18khz ip (m) | 110
+  20200416-PS122-3_36-145\magna+gem2-transect-20200416_PS122-3_36-145_ridgeD.csv | ice thickness 18khz ip (m) | 95
+  20200416-PS122-3_36-153\magna+gem2-transect-20200416_PS122-3_36-153_Nloop.csv | ice thickness 18khz ip (m) | 949
+  20200424-PS122-3_37-82\magna+gem2-transect-20200424_PS122-3_37-82_Nloop.csv | ice thickness 18khz ip (m) | 972
+  20200424-PS122-3_37-83\magna+gem2-transect-20200424_PS122-3_37-83_ridgeD.csv | ice thickness 18khz ip (m) | 89
+  20200424-PS122-3_37-84\magna+gem2-transect-20200424_PS122-3_37-84_ridgeE.csv | ice thickness 18khz ip (m) | 32
+  20200426-PS122-3_37-134\magna+gem2-transect-20200426_PS122-3_37-134_Sloop.csv | ice thickness 18khz ip (m) | 1106
+  20200430-PS122-3_38-80\magna+gem2-transect-20200430_PS122-3_38-80_Nloop.csv | ice thickness 18khz ip (m) | 967
+  20200430-PS122-3_38-81\magna+gem2-transect-20200430_PS122-3_38-81_ridgeD.csv | ice thickness 18khz ip (m) | 95
+  20200430-PS122-3_38-82\magna+gem2-transect-20200430_PS122-3_38-82_special.csv | ice thickness 18khz ip (m) | 122
+  20200507-PS122-3_39-131\magna+gem2-transect-20200507_PS122-3_39-131_Nloop.csv | ice thickness 18khz ip (m) | 899
+  20200507-PS122-3_39-132\magna+gem2-transect-20200507_PS122-3_39-132_Sloop.csv | ice thickness 18khz ip (m) | 587
+  20200507-PS122-3_39-133\magna+gem2-transect-20200507_PS122-3_39-133_ridgeD.csv | ice thickness 18khz ip (m) | 96
+  20200617-PS122-4_44-265\magna+gem2-transect-20200617_PS122-4_44-265_special.csv | ice thickness 18khz ip (m) | 0
+  20200617-PS122-4_44-266\magna+gem2-transect-20200617_PS122-4_44-266_special.csv | ice thickness 18khz ip (m) | 1184
+  20200617-PS122-4_44-266\magna+gem2-transect-20200617_PS122-4_44-266_transect.csv | ice thickness 18khz ip (m) | 1184
+  20200627-PS122-4_44-267\magna+gem2-transect-20200627_PS122-4_44-267_transect.csv | ice thickness 18khz ip (m) | 253
+  20200628-PS122-4_44-268\magna+gem2-transect-20200628_PS122-4_44-268_transect.csv | ice thickness 18khz ip (m) | 378
+  20200628-PS122-4_44-269\magna+gem2-transect-20200628_PS122-4_44-269_ridge.csv | ice thickness f18325hz_hcp_i (m) | 189
+  20200628-PS122-4_44-269\magna+gem2-transect-20200628_PS122-4_44-269_ridgeA1.csv | ice thickness f18325hz_hcp_i (m) | 47
+  20200628-PS122-4_44-269\magna+gem2-transect-20200628_PS122-4_44-269_ridgeA2.csv | ice thickness f18325hz_hcp_i (m) | 91
+  20200628-PS122-4_44-269\magna+gem2-transect-20200628_PS122-4_44-269_ridgeA3.csv | ice thickness f18325hz_hcp_i (m) | 50
+  20200629-PS122-4_45-198\magna+gem2-transect-20200629_PS122-4_45-198_transect.csv | ice thickness 18khz ip (m) | 709
+  20200630-PS122-4_45-199\magna+gem2-transect-20200630_PS122-4_45-199_albedoLD.csv | ice thickness 18khz ip (m) | 64
+  20200630-PS122-4_45-199\magna+gem2-transect-20200630_PS122-4_45-199_albedoRBB.csv | ice thickness 18khz ip (m) | 97
+  20200630-PS122-4_45-199\magna+gem2-transect-20200630_PS122-4_45-199_transect.csv | ice thickness 18khz ip (m) | 1260
+  20200702-PS122-4_45-200\magna+gem2-transect-20200702_PS122-4_45-200_transect.csv | ice thickness 18khz ip (m) | 1040
+  20200703-PS122-4_45-201\magna+gem2-transect-20200703_PS122-4_45-201_transect.csv | ice thickness 18khz ip (m) | 992
+  20200704-PS122-4_45-202\magna+gem2-transect-20200704_PS122-4_45-202_transect.csv | ice thickness 18khz ip (m) | 1036
+  20200705-PS122-4_45-203\magna+gem2-transect-20200705_PS122-4_45-203_transect.csv | ice thickness 18khz ip (m) | 1471
+  20200706-PS122-4_46-234\magna+gem2-transect-20200706_PS122-4_46-234_albedoLD.csv | ice thickness 18khz ip (m) | 165
+  20200706-PS122-4_46-234\magna+gem2-transect-20200706_PS122-4_46-234_albedoRBB.csv | ice thickness 18khz ip (m) | 110
+  20200706-PS122-4_46-234\magna+gem2-transect-20200706_PS122-4_46-234_transect.csv | ice thickness 18khz ip (m) | 1208
+  20200707-PS122-4_46-235\magna+gem2-transect-20200707_PS122-4_46-235_albedoLD.csv | ice thickness 18khz ip (m) | 63
+  20200707-PS122-4_46-235\magna+gem2-transect-20200707_PS122-4_46-235_albedoRBB.csv | ice thickness 18khz ip (m) | 72
+  20200707-PS122-4_46-235\magna+gem2-transect-20200707_PS122-4_46-235_transect.csv | ice thickness 18khz ip (m) | 1103
+  20200707-PS122-4_46-235\magna+gem2-transect-20200707_PS122-4_46-235_transect.csv.csv | ice thickness 18khz ip (m) | 1275
+  20200708-PS122-4_46-236\magna+gem2-transect-20200708_PS122-4_46-236_transect.csv | ice thickness 18khz ip (m) | 1093
+  20200710-PS122-4_46-238\magna+gem2-transect-20200710_PS122-4_46-238_transect.csv | ice thickness 18khz ip (m) | 1417
+  20200710-PS122-4_46-238\magna+gem2-transect-20200710_PS122-4_46-238_transect.csv.csv | ice thickness 18khz ip (m) | 1772
+  20200713-PS122-4_47-220\magna+gem2-transect-20200713_PS122-4_47-220_transect.csv | ice thickness 18khz ip (m) | 771
+  20200713-PS122-4_47-242\magna+gem2-transect-20200713_PS122-4_47-242_ridge.csv | ice thickness f18325hz_hcp_i (m) | 139
+  20200714-PS122-4_47-221\magna+gem2-transect-20200714_PS122-4_47-221_albedoLD.csv | ice thickness 18khz ip (m) | 59
+  20200714-PS122-4_47-221\magna+gem2-transect-20200714_PS122-4_47-221_albedoRBB.csv | ice thickness 18khz ip (m) | 70
+  20200714-PS122-4_47-221\magna+gem2-transect-20200714_PS122-4_47-221_transect.csv | ice thickness 18khz ip (m) | 1175
+  20200716-PS122-4_47-225\magna+gem2-transect-20200716_PS122-4_47-225_transect.csv | ice thickness 18khz ip (m) | 488
+  20200717-PS122-4_47-222\magna+gem2-transect-20200717_PS122-4_47-222_albedoLD.csv | ice thickness 18khz ip (m) | 109
+  20200717-PS122-4_47-222\magna+gem2-transect-20200717_PS122-4_47-222_albedoRBB.csv | ice thickness 18khz ip (m) | 96
+  20200717-PS122-4_47-222\magna+gem2-transect-20200717_PS122-4_47-222_transect.csv | ice thickness 18khz ip (m) | 1454
+  20200719-PS122-4_47-224\magna+gem2-transect-20200719_PS122-4_47-224_albedoLD.csv | ice thickness 18khz ip (m) | 76
+  20200719-PS122-4_47-224\magna+gem2-transect-20200719_PS122-4_47-224_albedoRBB.csv | ice thickness 18khz ip (m) | 77
+  20200719-PS122-4_47-224\magna+gem2-transect-20200719_PS122-4_47-224_special.csv | ice thickness 18khz ip (m) | 59
+  20200719-PS122-4_47-224\magna+gem2-transect-20200719_PS122-4_47-224_transect.csv | ice thickness 18khz ip (m) | 1019
+  20200719-PS122-4_47-226\magna+gem2-transect-20200719_PS122-4_47-226_special.csv | ice thickness 18khz ip (m) | 598
+  20200720-PS122-4_48-245\magna+gem2-transect-20200720_PS122-4_48-245_transect.csv | ice thickness 18khz ip (m) | 1676
+  20200721-PS122-4_48-246\magna+gem2-transect-20200721_PS122-4_48-246_albedoLD.csv | ice thickness 18khz ip (m) | 124
+  20200721-PS122-4_48-246\magna+gem2-transect-20200721_PS122-4_48-246_transect.csv | ice thickness 18khz ip (m) | 2064
+  20200723-PS122-4_48-247\magna+gem2-transect-20200723_PS122-4_48-247_transect.csv | ice thickness 18khz ip (m) | 910
+  20200724-PS122-4_48-248\magna+gem2-transect-20200724_PS122-4_48-248_albedoLD.csv | ice thickness 18khz ip (m) | 88
+  20200725-PS122-4_48-249\magna+gem2-transect-20200725_PS122-4_48-249_transect.csv | ice thickness 18khz ip (m) | 1014
+  20200726-PS122-4_48-250\magna+gem2-transect-20200726_PS122-4_48-250_transect.csv | ice thickness 18khz ip (m) | 950
+  20200727-PS122-4_49-115\magna+gem2-transect-20200727_PS122-4_49-115_albedoRBB.csv | ice thickness 18khz ip (m) | 0
+  20200727-PS122-4_49-115\magna+gem2-transect-20200727_PS122-4_49-115_transect.csv | ice thickness 18khz ip (m) | 0
+  20200727-PS122-4_49-116\magna+gem2-transect-20200727_PS122-4_49-116_albedoLD.csv | ice thickness 18khz ip (m) | 0
+  20200728-PS122-4_49-120\magna+gem2-transect-20200728_PS122-4_49-120_ridge.csv | ice thickness f18325hz_hcp_i (m) | 0
+  20200824-PS122-5_59-256\magna+gem2-transect-20200824_PS122-5_59-256_albedoK.csv | ice thickness 18khz ip (m) | 445
+  20200827-PS122-5_59-411\magna+gem2-transect-20200827_PS122-5_59-411_special.csv | ice thickness 18khz ip (m) | 578
+  20200828-PS122-5_59-412\magna+gem2-transect-20200828_PS122-5_59-412_ridge.csv | ice thickness 18khz ip (m) | 209
+  20200830-PS122-5_59-413\magna+gem2-transect-20200830_PS122-5_59-413_ARIEL.csv | ice thickness 18khz ip (m) | 90
+  20200830-PS122-5_59-413\magna+gem2-transect-20200830_PS122-5_59-413_albedoK.csv | ice thickness 18khz ip (m) | 310
+  20200830-PS122-5_59-413\magna+gem2-transect-20200830_PS122-5_59-413_transect.csv | ice thickness 18khz ip (m) | 476
+  20200902-PS122-5_60-58\magna+gem2-transect-20200902_PS122-5_60-58_special.csv | ice thickness 18khz ip (m) | 817
+  20200903-PS122-5_60-163\magna+gem2-transect-20200903_PS122-5_60-163_ARIEL.csv | ice thickness 18khz ip (m) | 71
+  20200903-PS122-5_60-163\magna+gem2-transect-20200903_PS122-5_60-163_albedoK.csv | ice thickness 18khz ip (m) | 143
+  20200903-PS122-5_60-164\magna+gem2-transect-20200903_PS122-5_60-164_special.csv | ice thickness 18khz ip (m) | 766
+  20200907-PS122-5_61-110\magna+gem2-transect-20200907_PS122-5_61-110_ARIEL.csv | ice thickness 18khz ip (m) | 175
+  20200907-PS122-5_61-110\magna+gem2-transect-20200907_PS122-5_61-110_albedoK.csv | ice thickness 18khz ip (m) | 213
+  20200907-PS122-5_61-110\magna+gem2-transect-20200907_PS122-5_61-110_kuka.csv | ice thickness 18khz ip (m) | 234
+  20200909-PS122-5_61-111\magna+gem2-transect-20200909_PS122-5_61-111_special.csv | ice thickness 18khz ip (m) | 1026
+  20200910-PS122-5_61-216\magna+gem2-transect-20200910_PS122-5_61-216_ARIEL.csv | ice thickness 18khz ip (m) | 312
+  20200910-PS122-5_61-216\magna+gem2-transect-20200910_PS122-5_61-216_albedoK.csv | ice thickness 18khz ip (m) | 336
+  20200910-PS122-5_61-216\magna+gem2-transect-20200910_PS122-5_61-216_kuka.csv | ice thickness 18khz ip (m) | 253
+  20200910-PS122-5_61-217\magna+gem2-transect-20200910_PS122-5_61-217_special.csv | ice thickness 18khz ip (m) | 1037
+  20200917-PS122-5_62-239\magna+gem2-transect-20200917_PS122-5_62-239_ARIEL.csv | ice thickness 18khz ip (m) | 265
+  20200917-PS122-5_62-241\magna+gem2-transect-20200917_PS122-5_62-241_kuka.csv | ice thickness 18khz ip (m) | 225
+  20200918-PS122-5_62-242\magna+gem2-transect-20200918_PS122-5_62-242_ridge.csv | ice thickness 18khz ip (m) | 11
+  20200918-PS122-5_62-243\magna+gem2-transect-20200918_PS122-5_62-243_albedoK.csv | ice thickness 18khz ip (m) | 276
+  20200919-PS122-5_62-244\magna+gem2-transect-20200919_PS122-5_62-244_special.csv | ice thickness 18khz ip (m) | 0

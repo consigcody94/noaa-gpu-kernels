@@ -1,0 +1,20 @@
+RouteLink: 11248 segments
+CHRTOUT: 11248 features, valid 2021-08-23 13:00:00
+links with masked CHRTOUT flow (waterbody-internal, excluded): 341
+Routed domain after waterbody exclusion: 10907 segments
+Reaches: 7592, segments: 10907, max reach len 25, mean 1.44
+Real-data ranges (full domain):
+  dx    min 1  max 61296  mean 3511.66
+  bw    min 0.195977  max 73.0599  mean 8.90364
+  tw    min 0.326628  max 121.767  mean 14.8394
+  twcc  min 0.979884  max 365.3  mean 44.5182
+  n_ch  min 0.05  max 0.06  mean 0.0583524
+  ncc   min 0.1  max 0.12  mean 0.116705
+  cs    min 0.140276  max 1.91186  mean 0.484084
+  s0    min 1e-05  max 3.85  mean 0.00737786
+  ql    min 0  max 0.73666  mean 0.00339754
+  qu    min 0  max 303.08  mean 3.40918
+  qd    min 0  max 280.82  mean 3.44133
+  segments with s0<=0: 0, n<=0: 0, bw<=0: 0, tw<bw: 0, all-zero-inflow: 804
+Wrote U:\AI\_noaa-research\noaa-gpu-kernels\_realdata\troute-mc\lcr_network.bin
+Wrote U:\AI\_noaa-research\noaa-gpu-kernels\_realdata\troute-mc\lcr_network_ids.csv

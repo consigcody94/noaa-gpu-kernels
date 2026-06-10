@@ -1,0 +1,13 @@
+A) intrinsic FP32 conditioning (clean Thomas, FP32 vs FP64):
+  K=1e-5     max FP32-vs-FP64 rel err (T) over 404 real cols: 2.56e-07  (col 384, min h = 9.36 m)
+  K=1e-4     max FP32-vs-FP64 rel err (T) over 404 real cols: 2.63e-07  (col 14, min h = 4.70 m)
+  K=1e-3     max FP32-vs-FP64 rel err (T) over 404 real cols: 5.96e-07  (col 77, min h = 0.75 m)
+  const=1.0  max FP32-vs-FP64 rel err (T) over 404 real cols: 2.21e-07  (col 108, min h = 5.04 m)
+
+B) clobber hypothesis (CPU-with-clobber vs clean Thomas, both FP64):
+   if this matches the observed CPU-vs-GPU error, the discrepancy is the
+   CPU reference's bottom-level overwrite, not GPU/FP32 error.
+  K=1e-5     max clean-vs-clobbered rel diff (T): 3.54e-03  (col 101, level 50)
+  K=1e-4     max clean-vs-clobbered rel diff (T): 1.47e-02  (col 101, level 50)
+  K=1e-3     max clean-vs-clobbered rel diff (T): 3.68e-02  (col 102, level 19)
+  const=1.0  max clean-vs-clobbered rel diff (T): 3.30e-01  (col 77, level 63)

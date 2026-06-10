@@ -1,0 +1,39 @@
+=============================================================
+  GPU Benchmark: Radiative Transfer exp() Optimization
+  RTX 3060 12GB | CUDA 13.3
+=============================================================
+
+Problem size: 1024 x 128 x 256 = 33554432 elements (268.4 MB fp64, 134.2 MB fp32)
+Benchmark iterations: 100
+
+--- Double Precision (fp64) ---
+  Baseline exp():     2.5091 ms  (213.97 GB/s)
+  Fast exp():         3.5566 ms  (150.95 GB/s)
+  Speedup:            0.71x
+  Max relative error: 1.000e+00
+
+--- Single Precision (fp32) ---
+  Baseline expf():    0.5052 ms  (531.33 GB/s)
+  Fast exp():         0.5056 ms  (530.91 GB/s)
+  __expf() intrinsic: 0.5029 ms  (533.79 GB/s)
+  Speedup (fast/base):  1.00x
+  Speedup (intr/base):  1.00x
+  Max relative error:   1.000e+00
+
+--- Parallel Prefix Scan (adding method) ---
+  ncol=1024, nlay=128
+  Sequential:         0.0458 ms
+  Parallel scan:      0.0117 ms
+  Speedup:            3.91x
+  Max relative error: 7.764e-07
+  Error count (>1e-4): 0 / 132096
+
+=============================================================
+  SUMMARY
+=============================================================
+  Fast exp (fp64):        0.71x speedup, 1.0e+00 max error
+  Fast exp (fp32):        1.00x speedup, 1.0e+00 max error
+  __expf intrinsic:       1.00x speedup (vs expf)
+  Parallel prefix scan:   3.91x speedup, 7.8e-07 max error
+  fp64 -> fp32 alone:     4.97x speedup (memory bandwidth)
+=============================================================

@@ -1,0 +1,33 @@
+================================================
+  t-route MC GPU Routing (FP64)
+  Reach-parallel, exact algorithm match
+================================================
+
+--- 1K reaches (10632 segments) ---
+  CPU:     11.0 ms
+  GPU:     11.930 ms (0.9x vs CPU)
+  Max abs: 1.21e-08  Max rel: 5.04e-09
+  NaN: 0, >0.1% err: 0/10632 (0.0000%)
+  Status:  PASS (< 1e-6 relative error)
+
+--- 10K reaches (105092 segments) ---
+  CPU:     110.0 ms
+  GPU:     20.165 ms (5.5x vs CPU)
+  Max abs: 9.25e-05  Max rel: 5.26e-06
+  NaN: 0, >0.1% err: 0/105092 (0.0000%)
+  Status:  PASS (all segments < 0.1%)
+
+--- 50K reaches (525636 segments) ---
+  CPU:     591.0 ms
+  GPU:     57.045 ms (10.4x vs CPU)
+  Max abs: 2.48e-01  Max rel: 5.26e-02
+  NaN: 0, >0.1% err: 7/525636 (0.0013%)
+  Status:  NEEDS REVIEW
+
+--- 100K reaches (1051355 segments) ---
+  CPU:     1138.0 ms
+  GPU:     102.538 ms (11.1x vs CPU)
+  Max abs: 5.29e-01  Max rel: 1.85e-01
+  NaN: 0, >0.1% err: 18/1051355 (0.0017%)
+  Status:  NEEDS REVIEW
+
