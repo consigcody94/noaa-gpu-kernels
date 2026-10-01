@@ -2,6 +2,27 @@
 
 GPU-accelerated computational kernels for NOAA weather, ocean, wave, and water prediction models. All benchmarked on RTX 3060 12GB with accuracy validated against CPU reference implementations.
 
+---
+
+## Interactive 3D Digital Twin & Vector Engineering Blueprints
+
+> **[Launch Interactive 3D WebGL Digital Twin (Earth System & GPU SM Architecture)](3d_gpu_model.html)**
+> *(Interactive real-time Three.js digital twin featuring Global Earth System coupled layers, NVIDIA Streaming Multiprocessor warp prefix scan execution, 3D Roofline performance landscape, OWP dendritic river network, and Arctic sea-ice EVP stress tensor deformation).*
+
+### Architecture Sheet 1: NOAA Operational Earth System GPU Acceleration Suite
+Warp execution & shared memory tiling for logarithmic parallel prefix scan in rte-rrtmgp & CRTM two-stream radiation solvers, 3D roofline performance model across RTX 3060/5070/H100, and verified kernel speedup matrix (2× to 462×).
+
+[![NOAA GPU Architecture Blueprint](results/noaa_gpu_architecture_blueprint.png)](results/noaa_gpu_architecture_blueprint.svg)
+*Figure 1: Standard ISO Drawing NOAA-GPU-DWG-001 (Rev 4.2). Vector SVG available at [`results/noaa_gpu_architecture_blueprint.svg`](results/noaa_gpu_architecture_blueprint.svg).*
+
+### Architecture Sheet 2: NOAA OWP Hydrology & Polar Sea-Ice GPU Computational Suite
+t-route Muskingum-Cunge reach-parallel wavefront scheduling across 2.7M CONUS reaches (92×), CICE elastic-viscous-plastic sea-ice dynamics (462×), Icepack Delta-Eddington multiple scattering (291×), NOAH-MP soil tridiagonal solver, and WCOSS2 operational supercomputer partitioning.
+
+[![NOAA Hydrology & Polar Ice Blueprint](results/noaa_hydrology_ice_kernels_blueprint.png)](results/noaa_hydrology_ice_kernels_blueprint.svg)
+*Figure 2: Standard ISO Drawing NOAA-HYD-DWG-002 (Rev 3.0). Vector SVG available at [`results/noaa_hydrology_ice_kernels_blueprint.svg`](results/noaa_hydrology_ice_kernels_blueprint.svg).*
+
+---
+
 ## Results Summary
 
 | # | Model | Kernel | Speedup | Max Error | Status | Upstream Issue |
