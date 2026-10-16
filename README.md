@@ -6,6 +6,14 @@ GPU-accelerated computational kernels for NOAA weather, ocean, wave, and water p
 
 ## Interactive 3D Digital Twin & Vector Engineering Blueprints
 
+### Physical Explainer: The NOAA Radiative Transfer Column Bench
+An interactive isometric precision instrument built with [wheresryan22/anatomy](https://github.com/wheresryan22/anatomy) embodying prefix scan radiation solving:
+
+> **[Launch Interactive Physical Explainer](https://consigcody94.github.io/scientific-anatomy/figures/noaa-gpu-radiometer/noaa-gpu-radiometer.html)** · *(Local: [`docs/figures/noaa-gpu-radiometer.html`](docs/figures/noaa-gpu-radiometer.html))*
+
+[![NOAA Radiative Transfer Column Bench](docs/figures/noaa-gpu-radiometer-dark.png)](https://consigcody94.github.io/scientific-anatomy/figures/noaa-gpu-radiometer/noaa-gpu-radiometer.html)
+*Figure: The NOAA Radiative Transfer Column Bench. An optical column advancing through six atmospheric absorption levels (TOA through boundary layer to ground). Dual spectrophotometers measure upward and downward radiant fluxes while the dial gauge tracks net divergence and cooling rate, verifying the 3.10x parallel prefix scan speedup.*
+
 > **[Launch Interactive 3D WebGL Digital Twin (Earth System & GPU SM Architecture)](3d_gpu_model.html)**
 > *(Interactive real-time Three.js digital twin featuring Global Earth System coupled layers, NVIDIA Streaming Multiprocessor warp prefix scan execution, 3D Roofline performance landscape, OWP dendritic river network, and Arctic sea-ice EVP stress tensor deformation).*
 
